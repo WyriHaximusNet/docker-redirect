@@ -1,0 +1,9 @@
+defaultFallbackTarget: https://blog.wyrihaximus.net/
+buildin:
+  wwwToNonWww: false
+  nonWwwToWww: false
+hosts:
+  www.wyrimaps.net: wyrimaps.net
+  bbc.co.uk: www.bbc.co.uk
+  127.0.0.1: blog.wyrihaximus.net
+  "[::1]": blog.wyrihaximus.net

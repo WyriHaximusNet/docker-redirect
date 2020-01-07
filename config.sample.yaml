@@ -1,0 +1,4 @@
+defaultFallbackTarget: https://wwww.wyrihaximus.net/ # Redirect anything to we can't figure out what to do with
+buildin:
+  wwwToNonWww: false # Redirects www.wyrihaximus.net to wyrihaximus.net
+  nonWwwToWww: true # Redirects wyrihaximus.net to www.wyrihaximus.net

@@ -1,0 +1,7 @@
+{
+    "require": {
+        "php": "^7.3",
+        "react/http": "^0.8.5",
+        "symfony/yaml": "^5.0"
+    }
+}

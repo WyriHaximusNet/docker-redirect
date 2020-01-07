@@ -1,0 +1,4 @@
+defaultFallbackTarget: https://blog.wyrihaximus.net/
+buildin:
+  wwwToNonWww: true
+  nonWwwToWww: false

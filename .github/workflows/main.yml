@@ -1,0 +1,138 @@
+name: Continuous Integration
+env:
+  DOCKER_IMAGE: wyrihaximusnet/redirect
+on:
+  push:
+  schedule:
+    - cron:  '0 0 * * 0'
+jobs:
+  lint-dockerfile:
+    strategy:
+      matrix:
+        image:
+          - reactphp # Jan 2020
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Lint Dockerfile
+        uses: docker://hadolint/hadolint:latest-debian
+        with:
+          entrypoint: hadolint
+          args: ./images/${{ matrix.image }}/Dockerfile
+  build-docker-image:
+    strategy:
+      matrix:
+        image:
+          - random # Random image every time this workflow is executed
+          - reactphp # Jan 2020
+    needs:
+      - lint-dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: cp -R $(echo -e "./images/$(ls ./images/ | shuf -n 1)") ./images/random
+        if: matrix.image == 'random'
+      - run: docker image build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` -t "${DOCKER_IMAGE}:${{ matrix.image }}" --no-cache --build-arg VERSION=$TAG_VERSION ./images/${{ matrix.image }}/
+      - run: mkdir ./docker-image
+      - run: docker save "${DOCKER_IMAGE}:${{ matrix.image }}" -o ./docker-image/docker_image.tar
+      - uses: actions/upload-artifact@master
+        with:
+          name: docker-image-${{ matrix.image }}
+          path: ./docker-image
+  scan-vulnerability:
+    strategy:
+      matrix:
+        image:
+          - random # Random image every time this workflow is executed
+          - reactphp # Jan 2020
+    needs: build-docker-image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install clair-scanner
+        run: |
+          sudo curl -L https://github.com/arminc/clair-scanner/releases/download/v8/clair-scanner_linux_amd64 -o /usr/local/bin/clair-scanner
+          sudo chmod +x /usr/local/bin/clair-scanner
+      - uses: actions/download-artifact@master
+        with:
+          name: docker-image-${{ matrix.image }}
+          path: ./docker-image
+      - run: docker load --input ./docker-image/docker_image.tar
+      - run: rm -Rf ./docker-image/
+      - run: mkdir -p "./clair/${DOCKER_IMAGE}"
+      - run: docker-compose -f .docker/security/docker-compose.yml -p clair-ci up -d
+      #      - run: RETRIES=0 && while ! wget -T 10 -q -O /dev/null http://localhost:6060/v1/namespaces ; do sleep 1 ; echo -n "." ; if [ $${RETRIES} -eq 10 ] ; then echo " Timeout, aborting." ; exit 1 ; fi ; RETRIES=$$(($${RETRIES}+1)) ; done
+      - run: sleep 10
+      - run: echo -e "${DOCKER_IMAGE}:${{ matrix.image }}" | xargs -I % sh -c 'clair-scanner --ip 172.17.0.1 -r "./clair/%.json" -l ./clair/clair.log % || (echo "% is vulnerable" && exit 1)'
+      - run: docker-compose -f .docker/security/docker-compose.yml -p clair-ci down
+  tests:
+    needs: scan-vulnerability
+    strategy:
+      matrix:
+        image:
+          - random # Random image every time this workflow is executed
+          - reactphp # Jan 2020
+        rules: [customHosts, nonWwwToWww, wwwToNonWww]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/download-artifact@master
+        with:
+          name: docker-image-${{ matrix.image }}
+          path: ./docker-image
+      - run: docker load --input ./docker-image/docker_image.tar
+      - name: Start image ${{ matrix.image }}
+        run: docker run -d --rm -v ${GITHUB_WORKSPACE}/${REDIRECT_CONFIG_FILE}:/etc/redirect/config.yaml ${DOCKER_IMAGE}:${{ matrix.image }}
+        env:
+          IMAGE: ${{ steps.build.outputs.tag }}
+          REDIRECT_CONFIG_FILE: tests/rules/${{ matrix.rules }}/config.yaml
+      - name: Get running image ID
+        id: ps
+        run: printf "::set-output name=id::%s" $(docker ps --format "{{.ID}}")
+        env:
+          IMAGE: ${{ steps.build.outputs.tag }}
+      - name: Get running image IP
+        id: inspect
+        run: printf "::set-output name=ip::%s" $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${IMAGE_ID})
+        env:
+          IMAGE_ID: ${{ steps.ps.outputs.id }}
+      - name: Run rule set ${{ matrix.rules }} against ${{ matrix.image }}
+        run: docker run -i loadimpact/k6 run -u 1000 -d 30s -e IMAGE_IP=${IMAGE_IP} -< ${SCRIPT_FILEIMAGE}
+        env:
+          IMAGE: ${{ matrix.image }}
+          IMAGE_IP: ${{ steps.inspect.outputs.ip }}
+          SCRIPT_FILEIMAGE: ./tests/rules/${{ matrix.rules }}/script.js
+  push-image:
+    strategy:
+      matrix:
+        image:
+          - random # Random image every time this workflow is executed
+          - reactphp # Jan 2020
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@master
+        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
+        with:
+          name: docker-image-${{ matrix.image }}
+          path: ./docker-image
+      - run: docker load --input ./docker-image/docker_image.tar
+        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
+      - run: rm -Rf ./docker-image/
+        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
+      - name: Login to Docker Hub
+        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
+        run: |
+          echo "${{ secrets.HUB_PASSCODE }}" | \
+          docker login \
+            --username "${{ secrets.HUB_USERNAME }}" \
+            --password-stdin
+      - name: Docker info
+        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
+        run: docker info
+      - name: Echo full tag
+        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
+        run: echo -e "${DOCKER_IMAGE}:${{ matrix.image }}"
+      - name: Push image to Docker Hub
+        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
+        run: docker push "${DOCKER_IMAGE}:${{ matrix.image }}"
