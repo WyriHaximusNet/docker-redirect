@@ -53,9 +53,13 @@ Keep in mind that the configuration options are executed in the following order:
 
 ## Usage
 
+The image can be start from the command line with the following command:
+
 ```bash
 docker run -d --rm -v /path/to/config.yaml:/etc/redirect/config.yaml wyrihaximusnet/redirect:random
 ```
+
+Once started the HTTP server is available at port `7132` for requests.
 
 ## License
 
