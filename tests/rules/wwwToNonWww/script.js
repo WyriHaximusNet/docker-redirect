@@ -19,25 +19,25 @@ export let options = {
 
 export default function() {
     group("wyrihaximus.net", function() {
-        let res = http.get("http://www.wyrihaximus.net:1337/");
+        let res = http.get("http://www.wyrihaximus.net:7132/");
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "http://wyrihaximus.net:1337/",
+            "location header is set with correct value": (r) => r.headers.Location === "http://wyrihaximus.net:7132/",
         });
         errorRate.add(!result);
     });
     group("bbc.co.uk", function() {
-        let res = http.get("http://www.bbc.co.uk:1337/");
+        let res = http.get("http://www.bbc.co.uk:7132/");
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "http://bbc.co.uk:1337/",
+            "location header is set with correct value": (r) => r.headers.Location === "http://bbc.co.uk:7132/",
         });
         errorRate.add(!result);
     });
     group("localhost", function() {
-        let res = http.get(`http://${__ENV.IMAGE_IP}:1337/`);
+        let res = http.get(`http://${__ENV.IMAGE_IP}:7132/`);
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,

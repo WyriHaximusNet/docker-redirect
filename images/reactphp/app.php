@@ -107,7 +107,7 @@ $server->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
 
-$socket = new React\Socket\Server('0.0.0.0:1337', $loop);
+$socket = new React\Socket\Server('0.0.0.0:7132', $loop);
 $socket->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
