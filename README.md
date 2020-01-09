@@ -46,6 +46,11 @@ hosts:
   wyrimaps.com: wyrimaps.net
 ```
 
+Keep in mind that the configuration options are executed in the following order:
+1. `hosts`
+2. `buildin.wwwToNonWww` or `buildin.nonWwwToWww`
+3. `defaultFallbackTarget`
+
 ## Usage
 
 ```bash
