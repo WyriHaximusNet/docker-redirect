@@ -2,6 +2,8 @@
     "require": {
         "php": "^7.3",
         "react/http": "^0.8.5",
-        "symfony/yaml": "^5.0"
+        "symfony/yaml": "^5.0",
+        "wyrihaximus/fake-php-version": "^1.3",
+        "wyrihaximus/react-http-middleware-with-headers": "^1.0"
     }
 }
