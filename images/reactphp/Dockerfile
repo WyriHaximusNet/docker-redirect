@@ -11,6 +11,7 @@ RUN composer install --ansi --no-interaction --prefer-dist --no-dev -o
 FROM wyrihaximusnet/php:7.4-zts-alpine3.11
 
 EXPOSE 7132
+EXPOSE 7133
 WORKDIR /opt/app
 
 COPY ./ /opt/app/

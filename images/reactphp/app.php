@@ -19,12 +19,44 @@ if ($yaml['buildin']['wwwToNonWww'] === true && $yaml['buildin']['nonWwwToWww'] 
 }
 
 $loop = Factory::create();
-$middleware = [];
 
-$middleware[] = new WithHeadersMiddleware([
+$metrics = [];
+$middleware = [];
+$metricsMiddleware = [];
+
+$extraHeaders = new WithHeadersMiddleware([
     'Server' => 'wyrihaximusnet/redirect (https://hub.docker.com/r/wyrihaximusnet/redirect)',
     'X-Powered-By' => 'PHP/' . CURRENT,
 ]);
+
+$middleware[] = $extraHeaders;
+$metricsMiddleware[] = $extraHeaders;
+
+$middleware[] = static function (ServerRequestInterface $request, callable $next) use (&$metrics): ResponseInterface {
+    $fromHost = $request->getUri()->getHost();
+    $method = $request->getMethod();
+    /** @var ResponseInterface $response */
+    $response = $next($request);
+    $toHost = parse_url($response->getHeaderLine('Location'))['host'];
+    $metrics[$fromHost][$method][$toHost]++;
+    return $response;
+};
+
+$metricsMiddleware[] = static function () use (&$metrics): ResponseInterface {
+    $lines = [];
+    $lines[] = '# HELP http_requests_total The amount of requests handler per host, HTTP method, and host the client was redirected to';
+    $lines[] = '# TYPE http_requests_total counter';
+    foreach ($metrics as $fromHost => $methods) {
+        foreach ($methods as $method => $toHosts) {
+            foreach ($toHosts as $toHost => $count) {
+                $lines[] = 'http_requests_total{fromHost="' . $fromHost . '",method="' . $method . '",toHost="' . $toHost . '"} ' . $count . ' ' . \floor(\microtime(true) * 1000);
+            }
+        }
+    }
+
+    return new Response(200, [], \implode("\n", $lines) . "\n");
+};
+
 
 if (isset($yaml['hosts']) && is_array($yaml['hosts']) && count($yaml['hosts']) > 0) {
     $middleware[] = static function (ServerRequestInterface $request, callable $next) use ($yaml): ResponseInterface {
@@ -114,15 +146,27 @@ $server->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
 
-$socket = new React\Socket\Server('0.0.0.0:7132', $loop);
+$socket = new React\Socket\Server('0.0.0.0:7132', $loop, ['backlog' => 511]);
 $socket->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
 $server->listen($socket);
 
-$signalHandler = function () use (&$signalHandler, $socket, $loop) {
+$metricsServer = new HttpServer($metricsMiddleware);
+$metricsServer->on('error', static function (Throwable $throwable): void {
+    echo $throwable, PHP_EOL;
+});
+
+$metricsSocket = new React\Socket\Server('0.0.0.0:7133', $loop, ['backlog' => 511]);
+$metricsSocket->on('error', static function (Throwable $throwable): void {
+    echo $throwable, PHP_EOL;
+});
+$metricsServer->listen($metricsSocket);
+
+$signalHandler = function () use (&$signalHandler, $socket, $metricsSocket, $loop) {
     $loop->removeSignal(SIGINT, $signalHandler);
     $socket->close();
+    $metricsSocket->close();
 };
 
 $loop->addSignal(SIGINT, $signalHandler);
