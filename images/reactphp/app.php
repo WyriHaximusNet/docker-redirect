@@ -6,6 +6,8 @@ use Symfony\Component\Yaml\Yaml;
 use Psr\Http\Message\ServerRequestInterface;
 use React\Http\Response;
 use React\Http\Server as HttpServer;
+use WyriHaximus\React\Http\Middleware\WithHeadersMiddleware;
+use const WyriHaximus\FakePHPVersion\CURRENT;
 
 require 'vendor/autoload.php';
 
@@ -18,6 +20,11 @@ if ($yaml['buildin']['wwwToNonWww'] === true && $yaml['buildin']['nonWwwToWww'] 
 
 $loop = Factory::create();
 $middleware = [];
+
+$middleware[] = new WithHeadersMiddleware([
+    'Server' => 'wyrihaximusnet/redirect (https://hub.docker.com/r/wyrihaximusnet/redirect)',
+    'X-Powered-By' => 'PHP/' . CURRENT,
+]);
 
 if (isset($yaml['hosts']) && is_array($yaml['hosts']) && count($yaml['hosts']) > 0) {
     $middleware[] = static function (ServerRequestInterface $request, callable $next) use ($yaml): ResponseInterface {
