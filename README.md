@@ -61,6 +61,15 @@ docker run -d --rm -v /path/to/config.yaml:/etc/redirect/config.yaml wyrihaximus
 
 Once started the HTTP server is available at port `7132` for requests.
 
+## Ports
+
+These docker images expose two ports:
+
+* `7132` - The world facing HTTP server doing the redirects.
+* `7133` - Internal metrics server.
+
+Both servers don't check for routes routes and either serve what they are build to serve.
+
 ## License
 
 You're free to use this docker image as it's provided under the MIT license, but if it makes it to your production 
