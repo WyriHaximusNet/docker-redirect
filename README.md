@@ -70,6 +70,14 @@ These docker images expose two ports:
 
 Both servers don't check for routes routes and either serve what they are build to serve.
 
+## Metrics
+
+These images export the following metric in [`Prometheus`](https://prometheus.io/) format:
+
+* `http_requests_total` - The total amount of requests made, this metric comes with the following tags: `fromHost` (the host the request is made to), `method` (the HTTP method used to make the request), and `toHost` (the host the client is redirected to).
+
+Different images may export different additional metrics but the one above and it's tags are guaranteed to be in all images.
+
 ## License
 
 You're free to use this docker image as it's provided under the MIT license, but if it makes it to your production 
