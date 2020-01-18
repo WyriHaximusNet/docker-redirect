@@ -22,7 +22,8 @@ ensure the same behavior across languages.
 ## Provided tags
 
 * `random` - Each time when the images are build a random image is selected and build.
-* `reactphp` - Using [ReactPHP](https://reactphp.org/)
+* `reactphp` - Using [ReactPHP](https://reactphp.org/) (January 2020)
+* `nodejs` - Using [NodeJS](https://nodejs.org/en/) (February 2020)
 
 ## Configuration
 
