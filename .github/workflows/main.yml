@@ -96,6 +96,16 @@ jobs:
         run: printf "::set-output name=ip::%s" $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${IMAGE_ID})
         env:
           IMAGE_ID: ${{ steps.ps.outputs.id }}
+      - name: Sleep 13 seconds before attempting to connect
+        run: sleep 13
+      - name: Test that redirect port is reachable
+        run: curl http://${IMAGE_IP}:7132/
+        env:
+          IMAGE_IP: ${{ steps.inspect.outputs.ip }}
+      - name: Test that metrics port is reachable
+        run: curl http://${IMAGE_IP}:7133/
+        env:
+          IMAGE_IP: ${{ steps.inspect.outputs.ip }}
       - name: Run unit tests ${{ matrix.rules }} against ${{ matrix.image }}
         run: docker run -i loadimpact/k6 run -u 1000 -d 30s -e IMAGE_IP=${IMAGE_IP} -< ${SCRIPT_FILEIMAGE}
         env:
