@@ -18,3 +18,21 @@ update_configs:
       - match:
           dependency_type: "all"
           update_type: "all"
+  - package_manager: "javascript"
+    directory: "/images/nodejs"
+    update_schedule: "live"
+    default_labels:
+      - "Dependencies"
+    automerged_updates:
+      - match:
+          dependency_type: "all"
+          update_type: "all"
+  - package_manager: "docker"
+    directory: "/images/nodejs"
+    update_schedule: "daily"
+    default_labels:
+      - "Dependencies"
+    automerged_updates:
+      - match:
+          dependency_type: "all"
+          update_type: "all"
