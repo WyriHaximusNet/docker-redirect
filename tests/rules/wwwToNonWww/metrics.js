@@ -17,9 +17,9 @@ export default function() {
         let result = check(res, {
             "is status 200": (r) => r.status === 200,
             "location header is not set": (r) => r.headers.Location === undefined,
-            "body contains from www.wyrihaximus.net => GET => wyrimaps.net": (r) => r.body.includes('http_requests_total{fromHost="www.wyrihaximus.net",method="GET",toHost="wyrihaximus.net"}'),
-            "body contains from www.bbc.co.uk => GET => bbc.co.uk": (r) => r.body.includes('http_requests_total{fromHost="www.bbc.co.uk",method="GET",toHost="bbc.co.uk"}'),
-            "body contains from DockerImageIp => GET => blog.wyrihaximus.net": (r) => r.body.includes('http_requests_total{fromHost="' + __ENV.IMAGE_IP + '",method="GET",toHost="blog.wyrihaximus.net"}'),
+            "body contains from www.wyrihaximus.net => GET => wyrimaps.net": (r) => r.body.includes('http_requests_total{') && r.body.includes('fromHost="www.wyrihaximus.net"') && r.body.includes('method="GET"') && r.body.includes('toHost="wyrihaximus.net"'),
+            "body contains from www.bbc.co.uk => GET => bbc.co.uk": (r) => r.body.includes('http_requests_total{') && r.body.includes('fromHost="www.bbc.co.uk"') && r.body.includes('method="GET"') && r.body.includes('toHost="bbc.co.uk"'),
+            "body contains from DockerImageIp => GET => blog.wyrihaximus.net": (r) => r.body.includes('http_requests_total{') && r.body.includes('fromHost="' + __ENV.IMAGE_IP + '"') && r.body.includes('method="GET"') && r.body.includes('toHost="blog.wyrihaximus.net"'),
         });
         errorRate.add(!result);
     });

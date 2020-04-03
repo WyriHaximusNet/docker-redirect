@@ -2,6 +2,17 @@
 
 use Psr\Http\Message\ResponseInterface;
 use React\EventLoop\Factory;
+use ReactInspector\Collector\Merger\CollectorMergerCollector;
+use ReactInspector\EventLoop\LoopCollector;
+use ReactInspector\EventLoop\LoopDecorator;
+use ReactInspector\Http\Middleware\Printer\PrinterMiddleware;
+use ReactInspector\HttpMiddleware\MiddlewareCollector;
+use ReactInspector\MemoryUsage\MemoryUsageCollector;
+use ReactInspector\Metrics;
+use ReactInspector\Printer\Prometheus\PrometheusPrinter;
+use ReactInspector\Stream\IOCollector;
+use ReactInspector\Tag;
+use ReactInspector\Tags;
 use Symfony\Component\Yaml\Yaml;
 use Psr\Http\Message\ServerRequestInterface;
 use React\Http\Response;
@@ -18,7 +29,7 @@ if ($yaml['buildin']['wwwToNonWww'] === true && $yaml['buildin']['nonWwwToWww'] 
     exit(1);
 }
 
-$loop = Factory::create();
+$loop = new LoopDecorator(Factory::create());
 
 $metrics = [];
 $middleware = [];
@@ -31,32 +42,32 @@ $extraHeaders = new WithHeadersMiddleware([
 
 $middleware[] = $extraHeaders;
 $metricsMiddleware[] = $extraHeaders;
+$middlewareCollectorRedirects = new MiddlewareCollector('redirects');
+$middlewareCollectorMetrics = new MiddlewareCollector('metrics');
+$middleware[] = $middlewareCollectorRedirects;
+$metricsMiddleware[] = $middlewareCollectorMetrics;
 
 $middleware[] = static function (ServerRequestInterface $request, callable $next) use (&$metrics): ResponseInterface {
-    $fromHost = $request->getUri()->getHost();
-    $method = $request->getMethod();
+    /** @var Tags $tags */
+    $tags = $request->getAttribute(MiddlewareCollector::TAGS_ATTRIBUTE);
+    $tags->add(new Tag('fromHost', $request->getUri()->getHost()));
     /** @var ResponseInterface $response */
     $response = $next($request);
-    $toHost = parse_url($response->getHeaderLine('Location'))['host'];
-    $metrics[$fromHost][$method][$toHost]++;
+    $tags->add(new Tag('toHost', parse_url($response->getHeaderLine('Location'))['host']));
     return $response;
 };
 
-$metricsMiddleware[] = static function () use (&$metrics): ResponseInterface {
-    $lines = [];
-    $lines[] = '# HELP http_requests_total The amount of requests handler per host, HTTP method, and host the client was redirected to';
-    $lines[] = '# TYPE http_requests_total counter';
-    foreach ($metrics as $fromHost => $methods) {
-        foreach ($methods as $method => $toHosts) {
-            foreach ($toHosts as $toHost => $count) {
-                $lines[] = 'http_requests_total{fromHost="' . $fromHost . '",method="' . $method . '",toHost="' . $toHost . '"} ' . $count . ' ' . \floor(\microtime(true) * 1000);
-            }
-        }
-    }
-
-    return new Response(200, [], \implode("\n", $lines) . "\n");
-};
-
+$metricsMiddleware[] = new PrinterMiddleware(new PrometheusPrinter(), new Metrics(
+    $loop,
+    3,
+    new LoopCollector($loop),
+    new MemoryUsageCollector(),
+    new IOCollector(),
+    new CollectorMergerCollector(
+        $middlewareCollectorRedirects,
+        $middlewareCollectorMetrics
+    )
+));
 
 if (isset($yaml['hosts']) && is_array($yaml['hosts']) && count($yaml['hosts']) > 0) {
     $middleware[] = static function (ServerRequestInterface $request, callable $next) use ($yaml): ResponseInterface {
@@ -165,11 +176,13 @@ $metricsServer->listen($metricsSocket);
 
 $signalHandler = function () use (&$signalHandler, $socket, $metricsSocket, $loop) {
     $loop->removeSignal(SIGINT, $signalHandler);
+    $loop->removeSignal(SIGTERM, $signalHandler);
     $socket->close();
     $metricsSocket->close();
 };
 
 $loop->addSignal(SIGINT, $signalHandler);
+$loop->addSignal(SIGTERM, $signalHandler);
 
 echo 'Loop::run()', PHP_EOL;
 $loop->run();
