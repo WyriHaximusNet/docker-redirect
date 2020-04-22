@@ -1,4 +1,4 @@
-FROM node:13-alpine3.11
+FROM node:14-alpine3.11
 
 RUN set -x \
     && addgroup -g 666 app \
