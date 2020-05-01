@@ -12,6 +12,7 @@ jobs:
         image:
           - reactphp # Jan 2020
           - nodejs # Feb 2020
+          - go # Mar 2020
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -27,6 +28,7 @@ jobs:
           - random # Random image every time this workflow is executed
           - reactphp # Jan 2020
           - nodejs # Feb 2020
+          - go # Mar 2020
     needs:
       - lint-dockerfile
     runs-on: ubuntu-latest
@@ -48,6 +50,7 @@ jobs:
           - random # Random image every time this workflow is executed
           - reactphp # Jan 2020
           - nodejs # Feb 2020
+          - go # Mar 2020
     needs: build-docker-image
     runs-on: ubuntu-latest
     steps:
@@ -76,6 +79,7 @@ jobs:
           - random # Random image every time this workflow is executed
           - reactphp # Jan 2020
           - nodejs # Feb 2020
+          - go # Mar 2020
         rules: [customHosts, nonWwwToWww, wwwToNonWww]
     runs-on: ubuntu-latest
     steps:
@@ -135,6 +139,7 @@ jobs:
           - random # Random image every time this workflow is executed
           - reactphp # Jan 2020
           - nodejs # Feb 2020
+          - go # Mar 2020
     needs: tests
     runs-on: ubuntu-latest
     steps:
