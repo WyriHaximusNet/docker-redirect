@@ -1871,16 +1871,16 @@
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.3.8",
+            "version": "1.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "62dcc8ea717099b004267485a01dbc5d7b6c3cd6"
+                "reference": "cf26a51178e1495f1de249da36b10b03a7c6c576"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/62dcc8ea717099b004267485a01dbc5d7b6c3cd6",
-                "reference": "62dcc8ea717099b004267485a01dbc5d7b6c3cd6",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/cf26a51178e1495f1de249da36b10b03a7c6c576",
+                "reference": "cf26a51178e1495f1de249da36b10b03a7c6c576",
                 "shasum": ""
             },
             "require": {
@@ -1904,7 +1904,7 @@
                 }
             ],
             "description": "Ever wanted a fake non-existing version number of PHP, well this package is for you!",
-            "time": "2019-12-17T16:52:14+00:00"
+            "time": "2020-05-12T09:08:57+00:00"
         },
         {
             "name": "wyrihaximus/iterator-or-array-to-array",
