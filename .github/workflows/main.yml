@@ -19,6 +19,19 @@ jobs:
           ls images | jq -csR '. + "random" | split("\n")' > images.list
           cat images.list
           echo "::set-output name=images::$(cat images.list)"
+  generate-rule-strategy:
+    name: Generate Rules Strategy
+    runs-on: ubuntu-latest
+    outputs:
+      rules: ${{ steps.generate-rule-strategy.outputs.rules }}
+    steps:
+      - uses: actions/checkout@v1
+      - id: generate-rule-strategy
+        name: Generate Jobs
+        run: |
+          ls tests/rules | jq -csR '. | rtrimstr("\n") | split("\n")' > rules.list
+          cat rules.list
+          echo "::set-output name=rules::$(cat rules.list)"
   lint-dockerfile:
     needs:
       - generate-image-strategy
@@ -83,11 +96,12 @@ jobs:
   tests:
     needs:
       - generate-image-strategy
+      - generate-rule-strategy
       - scan-vulnerability
     strategy:
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
-        rules: [customHosts, nonWwwToWww, wwwToNonWww]
+        rules: ${{ fromJson(needs.generate-rule-strategy.outputs.rules) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
