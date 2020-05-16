@@ -33,6 +33,7 @@ jobs:
           cat rules.list
           echo "::set-output name=rules::$(cat rules.list)"
   lint-dockerfile:
+    name: Lint ${{ matrix.image }}'s Dockerfile
     needs:
       - generate-image-strategy
     strategy:
@@ -49,6 +50,7 @@ jobs:
           entrypoint: hadolint
           args: ./images/${{ matrix.image }}/Dockerfile
   build-docker-image:
+    name: Build ${{ matrix.image }} Docker
     strategy:
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
@@ -68,6 +70,7 @@ jobs:
           name: docker-image-${{ matrix.image }}
           path: ./docker-image
   scan-vulnerability:
+    name: Scan ${{ matrix.image }} for vulnerabilities
     strategy:
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
@@ -94,6 +97,7 @@ jobs:
       - run: echo -e "${DOCKER_IMAGE}:${{ matrix.image }}" | xargs -I % sh -c 'clair-scanner --ip 172.17.0.1 -r "./clair/%.json" -l ./clair/clair.log % || (echo "% is vulnerable" && exit 1)'
       - run: docker-compose -f .docker/security/docker-compose.yml -p clair-ci down
   tests:
+    name: Test ${{ matrix.image }} against ${{ matrix.rule }}
     needs:
       - generate-image-strategy
       - generate-rule-strategy
@@ -101,7 +105,7 @@ jobs:
     strategy:
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
-        rules: ${{ fromJson(needs.generate-rule-strategy.outputs.rules) }}
+        rule: ${{ fromJson(needs.generate-rule-strategy.outputs.rules) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -114,7 +118,7 @@ jobs:
         run: docker run -d --rm -v ${GITHUB_WORKSPACE}/${REDIRECT_CONFIG_FILE}:/etc/redirect/config.yaml ${DOCKER_IMAGE}:${{ matrix.image }}
         env:
           IMAGE: ${{ steps.build.outputs.tag }}
-          REDIRECT_CONFIG_FILE: tests/rules/${{ matrix.rules }}/config.yaml
+          REDIRECT_CONFIG_FILE: tests/rules/${{ matrix.rule }}/config.yaml
       - name: Get running image ID
         id: ps
         run: printf "::set-output name=id::%s" $(docker ps --format "{{.ID}}")
@@ -135,25 +139,26 @@ jobs:
         run: curl http://${IMAGE_IP}:7133/
         env:
           IMAGE_IP: ${{ steps.inspect.outputs.ip }}
-      - name: Run unit tests ${{ matrix.rules }} against ${{ matrix.image }}
+      - name: Run unit tests ${{ matrix.rule }} against ${{ matrix.image }}
         run: docker run -i loadimpact/k6 run -u 1000 -d 30s -e IMAGE_IP=${IMAGE_IP} -< ${SCRIPT_FILEIMAGE}
         env:
           IMAGE: ${{ matrix.image }}
           IMAGE_IP: ${{ steps.inspect.outputs.ip }}
           IMAGE_ID: ${{ steps.ps.outputs.id }}
-          SCRIPT_FILEIMAGE: ./tests/rules/${{ matrix.rules }}/unit.js
-      - name: Run metrics tests ${{ matrix.rules }} against ${{ matrix.image }}
+          SCRIPT_FILEIMAGE: ./tests/rules/${{ matrix.rule }}/unit.js
+      - name: Run metrics tests ${{ matrix.rule }} against ${{ matrix.image }}
         run: docker run -i loadimpact/k6 run -u 10 -d 10s -e IMAGE_IP=${IMAGE_IP} -< ${SCRIPT_FILEIMAGE}
         env:
           IMAGE: ${{ matrix.image }}
           IMAGE_IP: ${{ steps.inspect.outputs.ip }}
           IMAGE_ID: ${{ steps.ps.outputs.id }}
-          SCRIPT_FILEIMAGE: ./tests/rules/${{ matrix.rules }}/metrics.js
+          SCRIPT_FILEIMAGE: ./tests/rules/${{ matrix.rule }}/metrics.js
       - name: Docker logs for image ${{ matrix.image }}
         run: docker logs ${IMAGE_ID}
         env:
           IMAGE_ID: ${{ steps.ps.outputs.id }}
   push-image:
+    name: Push ${{ matrix.image }}
     strategy:
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
