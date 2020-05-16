@@ -6,16 +6,44 @@ on:
   schedule:
     - cron:  '0 0 * * 0'
 jobs:
+  generate-image-strategy:
+    name: Generate Image Strategy
+    runs-on: ubuntu-latest
+    outputs:
+      images: ${{ steps.generate-image-strategy.outputs.images }}
+    steps:
+      - uses: actions/checkout@v1
+      - id: generate-image-strategy
+        name: Generate Jobs
+        run: |
+          ls images | jq -csR '. + "random" | split("\n")' > images.list
+          cat images.list
+          echo "::set-output name=images::$(cat images.list)"
+  generate-rule-strategy:
+    name: Generate Rules Strategy
+    runs-on: ubuntu-latest
+    outputs:
+      rules: ${{ steps.generate-rule-strategy.outputs.rules }}
+    steps:
+      - uses: actions/checkout@v1
+      - id: generate-rule-strategy
+        name: Generate Jobs
+        run: |
+          ls tests/rules | jq -csR '. | rtrimstr("\n") | split("\n")' > rules.list
+          cat rules.list
+          echo "::set-output name=rules::$(cat rules.list)"
   lint-dockerfile:
+    needs:
+      - generate-image-strategy
     strategy:
       matrix:
-        image:
-          - reactphp # Jan 2020
-          - nodejs # Feb 2020
+        image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        if: matrix.image != 'random'
       - name: Lint Dockerfile
+        if: matrix.image != 'random'
         uses: docker://hadolint/hadolint:latest-debian
         with:
           entrypoint: hadolint
@@ -23,11 +51,9 @@ jobs:
   build-docker-image:
     strategy:
       matrix:
-        image:
-          - random # Random image every time this workflow is executed
-          - reactphp # Jan 2020
-          - nodejs # Feb 2020
+        image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     needs:
+      - generate-image-strategy
       - lint-dockerfile
     runs-on: ubuntu-latest
     steps:
@@ -44,11 +70,10 @@ jobs:
   scan-vulnerability:
     strategy:
       matrix:
-        image:
-          - random # Random image every time this workflow is executed
-          - reactphp # Jan 2020
-          - nodejs # Feb 2020
-    needs: build-docker-image
+        image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
+    needs:
+      - generate-image-strategy
+      - build-docker-image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -69,14 +94,14 @@ jobs:
       - run: echo -e "${DOCKER_IMAGE}:${{ matrix.image }}" | xargs -I % sh -c 'clair-scanner --ip 172.17.0.1 -r "./clair/%.json" -l ./clair/clair.log % || (echo "% is vulnerable" && exit 1)'
       - run: docker-compose -f .docker/security/docker-compose.yml -p clair-ci down
   tests:
-    needs: scan-vulnerability
+    needs:
+      - generate-image-strategy
+      - generate-rule-strategy
+      - scan-vulnerability
     strategy:
       matrix:
-        image:
-          - random # Random image every time this workflow is executed
-          - reactphp # Jan 2020
-          - nodejs # Feb 2020
-        rules: [customHosts, nonWwwToWww, wwwToNonWww]
+        image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
+        rules: ${{ fromJson(needs.generate-rule-strategy.outputs.rules) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -131,11 +156,10 @@ jobs:
   push-image:
     strategy:
       matrix:
-        image:
-          - random # Random image every time this workflow is executed
-          - reactphp # Jan 2020
-          - nodejs # Feb 2020
-    needs: tests
+        image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
+    needs:
+      - generate-image-strategy
+      - tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@master
