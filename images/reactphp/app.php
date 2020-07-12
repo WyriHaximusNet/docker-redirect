@@ -15,8 +15,9 @@ use ReactInspector\Tag;
 use ReactInspector\Tags;
 use Symfony\Component\Yaml\Yaml;
 use Psr\Http\Message\ServerRequestInterface;
-use React\Http\Response;
+use React\Http\Message\Response;
 use React\Http\Server as HttpServer;
+use WyriHaximus\React\Http\Middleware\Header;
 use WyriHaximus\React\Http\Middleware\WithHeadersMiddleware;
 use const WyriHaximus\FakePHPVersion\CURRENT;
 
@@ -35,10 +36,10 @@ $metrics = [];
 $middleware = [];
 $metricsMiddleware = [];
 
-$extraHeaders = new WithHeadersMiddleware([
-    'Server' => 'wyrihaximusnet/redirect (https://hub.docker.com/r/wyrihaximusnet/redirect)',
-    'X-Powered-By' => 'PHP/' . CURRENT,
-]);
+$extraHeaders = new WithHeadersMiddleware(
+    new Header('Server', 'wyrihaximusnet/redirect (https://hub.docker.com/r/wyrihaximusnet/redirect)'),
+    new Header('X-Powered-By', 'PHP/' . CURRENT),
+);
 
 $middleware[] = $extraHeaders;
 $metricsMiddleware[] = $extraHeaders;
@@ -143,16 +144,9 @@ if ($yaml['buildin']['nonWwwToWww'] === true) {
     };
 }
 
-$middleware[] = function (ServerRequestInterface $request) use ($yaml): ResponseInterface {
-    return new Response(
-        301,
-        [
-            'Location' => $yaml['defaultFallbackTarget'],
-        ]
-    );
-};
+$middleware[] = static fn (ServerRequestInterface $request): ResponseInterface => new Response(301,['Location' => $yaml['defaultFallbackTarget']]);
 
-$server = new HttpServer($middleware);
+$server = new HttpServer($loop, ...$middleware);
 $server->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
@@ -163,7 +157,7 @@ $socket->on('error', static function (Throwable $throwable): void {
 });
 $server->listen($socket);
 
-$metricsServer = new HttpServer($metricsMiddleware);
+$metricsServer = new HttpServer($loop, ...$metricsMiddleware);
 $metricsServer->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
@@ -175,10 +169,13 @@ $metricsSocket->on('error', static function (Throwable $throwable): void {
 $metricsServer->listen($metricsSocket);
 
 $signalHandler = function () use (&$signalHandler, $socket, $metricsSocket, $loop) {
+    echo 'Caught signal', PHP_EOL;
     $loop->removeSignal(SIGINT, $signalHandler);
     $loop->removeSignal(SIGTERM, $signalHandler);
     $socket->close();
     $metricsSocket->close();
+    echo 'Closed and stopped everything', PHP_EOL;
+    $loop->stop();
 };
 
 $loop->addSignal(SIGINT, $signalHandler);
