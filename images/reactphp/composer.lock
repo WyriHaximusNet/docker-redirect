@@ -430,6 +430,12 @@
                 }
             ],
             "description": "⛲⛲ Combine metrics from the same collector into one metric",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-18T18:38:57+00:00"
         },
         {
@@ -478,6 +484,12 @@
                 }
             ],
             "description": "🌀 Measure the Event Loop",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-29T20:52:27+00:00"
         },
         {
@@ -524,6 +536,12 @@
                 }
             ],
             "description": "🔭 Measure HTTP requests going through an react/http",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-20T23:40:17+00:00"
         },
         {
@@ -571,6 +589,12 @@
                 }
             ],
             "description": "📰🏮 HTTP Middleware Metrics Printer",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-22T22:07:40+00:00"
         },
         {
@@ -623,6 +647,12 @@
                 }
             ],
             "description": "📶 Measure the memory usage of the current PHP process",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-23T21:48:23+00:00"
         },
         {
@@ -669,6 +699,12 @@
                 }
             ],
             "description": "📐 Metric VO's",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-15T21:24:35+00:00"
         },
         {
@@ -739,6 +775,12 @@
                 }
             ],
             "description": "☄ Metrics stream",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-18T17:13:22+00:00"
         },
         {
@@ -820,6 +862,12 @@
                 }
             ],
             "description": "📜 Metrics Printer in Prometheus format",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-20T22:41:00+00:00"
         },
         {
@@ -872,6 +920,12 @@
                 }
             ],
             "description": "🌊 React Stream throughput inspector",
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
             "time": "2020-04-03T18:47:31+00:00"
         },
         {
@@ -1624,16 +1678,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.17.1",
+            "version": "v1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "2edd75b8b35d62fd3eeabba73b26b8f1f60ce13d"
+                "reference": "1c302646f6efc070cd46856e600e5e0684d6b454"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/2edd75b8b35d62fd3eeabba73b26b8f1f60ce13d",
-                "reference": "2edd75b8b35d62fd3eeabba73b26b8f1f60ce13d",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/1c302646f6efc070cd46856e600e5e0684d6b454",
+                "reference": "1c302646f6efc070cd46856e600e5e0684d6b454",
                 "shasum": ""
             },
             "require": {
@@ -1645,7 +1699,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17-dev"
+                    "dev-master": "1.18-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1696,20 +1750,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-06T08:46:27+00:00"
+            "time": "2020-07-14T12:35:20+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.1.2",
+            "version": "v5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "ea342353a3ef4f453809acc4ebc55382231d4d23"
+                "reference": "a44bd3a91bfbf8db12367fa6ffac9c3eb1a8804a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/ea342353a3ef4f453809acc4ebc55382231d4d23",
-                "reference": "ea342353a3ef4f453809acc4ebc55382231d4d23",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a44bd3a91bfbf8db12367fa6ffac9c3eb1a8804a",
+                "reference": "a44bd3a91bfbf8db12367fa6ffac9c3eb1a8804a",
                 "shasum": ""
             },
             "require": {
@@ -1773,7 +1827,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-20T17:43:50+00:00"
+            "time": "2020-08-26T08:30:57+00:00"
         },
         {
             "name": "thecodingmachine/safe",
