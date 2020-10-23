@@ -23,7 +23,7 @@ export default function() {
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "http://wyrimaps.net:7132/wow",
+            "location header is set with correct value": (r) => r.headers.Location === "https://wyrimaps.net:7132/wow",
         });
         errorRate.add(!result);
     });
@@ -32,7 +32,7 @@ export default function() {
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "http://www.bbc.co.uk:7132/article?gastvrouw=bbc.co.uk",
+            "location header is set with correct value": (r) => r.headers.Location === "https://www.bbc.co.uk:7132/article?gastvrouw=bbc.co.uk",
         });
         errorRate.add(!result);
     });

@@ -37,6 +37,7 @@ jobs:
     needs:
       - generate-image-strategy
     strategy:
+      fail-fast: false
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     runs-on: ubuntu-latest
@@ -52,6 +53,7 @@ jobs:
   build-docker-image:
     name: Build ${{ matrix.image }} Docker
     strategy:
+      fail-fast: false
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     needs:
@@ -72,6 +74,7 @@ jobs:
   scan-vulnerability:
     name: Scan ${{ matrix.image }} for vulnerabilities
     strategy:
+      fail-fast: false
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     needs:
@@ -103,6 +106,7 @@ jobs:
       - generate-rule-strategy
       - scan-vulnerability
     strategy:
+      fail-fast: false
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
         rule: ${{ fromJson(needs.generate-rule-strategy.outputs.rules) }}
@@ -161,6 +165,7 @@ jobs:
     if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
     name: Push ${{ matrix.image }}
     strategy:
+      fail-fast: false
       matrix:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     needs:

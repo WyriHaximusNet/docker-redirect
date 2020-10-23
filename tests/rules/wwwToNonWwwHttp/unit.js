@@ -23,7 +23,7 @@ export default function() {
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "https://wyrihaximus.net:7132/",
+            "location header is set with correct value": (r) => r.headers.Location === "http://wyrihaximus.net:7132/",
         });
         errorRate.add(!result);
     });
@@ -32,7 +32,7 @@ export default function() {
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "https://bbc.co.uk:7132/",
+            "location header is set with correct value": (r) => r.headers.Location === "http://bbc.co.uk:7132/",
         });
         errorRate.add(!result);
     });

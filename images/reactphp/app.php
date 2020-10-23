@@ -13,6 +13,7 @@ use ReactInspector\Printer\Prometheus\PrometheusPrinter;
 use ReactInspector\Stream\IOCollector;
 use ReactInspector\Tag;
 use ReactInspector\Tags;
+use RingCentral\Psr7\Uri;
 use Symfony\Component\Yaml\Yaml;
 use Psr\Http\Message\ServerRequestInterface;
 use React\Http\Message\Response;
@@ -75,10 +76,16 @@ if (isset($yaml['hosts']) && is_array($yaml['hosts']) && count($yaml['hosts']) >
         $host = $request->getUri()->getHost();
 
         if (array_key_exists($host, $yaml['hosts'])) {
+            $uri = $request->getUri()->withHost($yaml['hosts'][$host]);
+
+            if (array_key_exists('enforceHttps', $yaml) && $yaml['enforceHttps'] === true) {
+                $uri = $uri->withScheme('https');
+            }
+
             return new Response(
                 301,
                 [
-                    'Location' => (string) $request->getUri()->withHost($yaml['hosts'][$host]),
+                    'Location' => (string) $uri,
                 ]
             );
         }
@@ -88,7 +95,7 @@ if (isset($yaml['hosts']) && is_array($yaml['hosts']) && count($yaml['hosts']) >
 }
 
 if ($yaml['buildin']['wwwToNonWww'] === true) {
-    $middleware[] = static function (ServerRequestInterface $request, callable $next): ResponseInterface {
+    $middleware[] = static function (ServerRequestInterface $request, callable $next) use ($yaml): ResponseInterface {
         $host = $request->getUri()->getHost();
 
         if (empty($host)) {
@@ -100,15 +107,21 @@ if ($yaml['buildin']['wwwToNonWww'] === true) {
         }
 
         if (stripos($host, 'www.') === 0) {
+            $uri = $request->getUri()->withHost(
+                substr(
+                    $host,
+                    4,
+                )
+            );
+
+            if (array_key_exists('enforceHttps', $yaml) && $yaml['enforceHttps'] === true) {
+                $uri = $uri->withScheme('https');
+            }
+
             return new Response(
                 301,
                 [
-                    'Location' => (string) $request->getUri()->withHost(
-                        substr(
-                            $host,
-                            4,
-                        )
-                    ),
+                    'Location' => (string) $uri,
                 ]
             );
         }
@@ -118,7 +131,7 @@ if ($yaml['buildin']['wwwToNonWww'] === true) {
 }
 
 if ($yaml['buildin']['nonWwwToWww'] === true) {
-    $middleware[] = static function (ServerRequestInterface $request, callable $next): ResponseInterface {
+    $middleware[] = static function (ServerRequestInterface $request, callable $next) use ($yaml): ResponseInterface {
         $host = $request->getUri()->getHost();
 
         if (empty($host)) {
@@ -133,17 +146,27 @@ if ($yaml['buildin']['nonWwwToWww'] === true) {
             return $next($request);
         }
 
+        $uri = $request->getUri()->withHost(
+            'www.' . $host,
+        );
+
+        if (array_key_exists('enforceHttps', $yaml) && $yaml['enforceHttps'] === true) {
+            $uri = $uri->withScheme('https');
+        }
+
         return new Response(
             301,
             [
-                'Location' => (string) $request->getUri()->withHost(
-                    'www.' . $host,
-                ),
+                'Location' => (string) $uri,
             ]
         );
     };
 }
 
+
+if (array_key_exists('enforceHttps', $yaml) && $yaml['enforceHttps'] === true) {
+    $yaml['defaultFallbackTarget'] = (string) (new Uri($yaml['defaultFallbackTarget']))->withScheme('https');
+}
 $middleware[] = static fn (ServerRequestInterface $request): ResponseInterface => new Response(301,['Location' => $yaml['defaultFallbackTarget']]);
 
 $server = new HttpServer($loop, ...$middleware);

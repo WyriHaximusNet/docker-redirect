@@ -6,8 +6,8 @@ export let errorRate = new Rate("errors");
 
 export let options = {
     hosts: {
-        "wyrihaximus.net": `${__ENV.IMAGE_IP}`,
-        "www.wyrihaximus.net": `${__ENV.IMAGE_IP}`,
+        "wyrimaps.net": `${__ENV.IMAGE_IP}`,
+        "www.wyrimaps.net": `${__ENV.IMAGE_IP}`,
         "bbc.co.uk": `${__ENV.IMAGE_IP}`,
         "www.bbc.co.uk": `${__ENV.IMAGE_IP}`,
     },
@@ -19,20 +19,20 @@ export let options = {
 
 export default function() {
     group("wyrihaximus.net", function() {
-        let res = http.get("http://www.wyrihaximus.net:7132/");
+        let res = http.get("http://www.wyrimaps.net:7132/wow");
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "https://wyrihaximus.net:7132/",
+            "location header is set with correct value": (r) => r.headers.Location === "http://wyrimaps.net:7132/wow",
         });
         errorRate.add(!result);
     });
     group("bbc.co.uk", function() {
-        let res = http.get("http://www.bbc.co.uk:7132/");
+        let res = http.get("http://bbc.co.uk:7132/article?gastvrouw=bbc.co.uk");
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "https://bbc.co.uk:7132/",
+            "location header is set with correct value": (r) => r.headers.Location === "http://www.bbc.co.uk:7132/article?gastvrouw=bbc.co.uk",
         });
         errorRate.add(!result);
     });
