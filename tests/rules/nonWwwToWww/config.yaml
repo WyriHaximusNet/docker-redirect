@@ -1,4 +1,5 @@
-defaultFallbackTarget: https://blog.wyrihaximus.net/
+defaultFallbackTarget: http://blog.wyrihaximus.net/
+enforceHttps: true
 buildin:
   wwwToNonWww: false
   nonWwwToWww: true

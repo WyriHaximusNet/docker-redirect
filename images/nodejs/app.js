@@ -40,6 +40,10 @@ const hostsHandler = function (req, res) {
     if ('hosts' in yamlConfig && url.hostname in yamlConfig.hosts) {
         url.hostname = yamlConfig.hosts[url.hostname];
 
+        if ('enforceHttps' in yamlConfig && yamlConfig.enforceHttps === true) {
+            url.protocol = 'https:';
+        }
+
         res.writeHead(
             301,
             {
@@ -65,6 +69,11 @@ const wwwToNonWwwHandler = function (req, res) {
     if (req.headers.host.indexOf('www.') === 0) {
 
         url.hostname = url.hostname.substring(4);
+
+        if ('enforceHttps' in yamlConfig && yamlConfig.enforceHttps === true) {
+            url.protocol = 'https:';
+        }
+
         res.writeHead(
             301,
             {
@@ -89,6 +98,11 @@ const nonWwwToWwwHandler = function (req, res) {
 
     if (req.headers.host.indexOf('www.') === -1) {
         url.hostname = 'www.' + url.hostname;
+
+        if ('enforceHttps' in yamlConfig && yamlConfig.enforceHttps === true) {
+            url.protocol = 'https:';
+        }
+
         res.writeHead(
             301,
             {
@@ -105,16 +119,20 @@ const nonWwwToWwwHandler = function (req, res) {
 };
 
 const defaultFallbackHandler = function (req, res) {
-    let url = new URL(fullUrl(req));
+    let url = new URL(yamlConfig.defaultFallbackTarget);
+
+    if ('enforceHttps' in yamlConfig && yamlConfig.enforceHttps === true) {
+        url.protocol = 'https:';
+    }
 
     res.writeHead(
         301,
         {
-            'Location': yamlConfig.defaultFallbackTarget
+            'Location': url.toString()
         }
     ).end('');
 
-    counter.inc({fromHost: url.hostname, method: req.method, toHost: (new URL(yamlConfig.defaultFallbackTarget)).hostname});
+    counter.inc({fromHost: new URL(fullUrl(req)).hostname, method: req.method, toHost: url.hostname});
 
     return true;
 };

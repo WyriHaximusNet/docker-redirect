@@ -19,20 +19,20 @@ export let options = {
 
 export default function() {
     group("wyrihaximus.net", function() {
-        let res = http.get("http://www.wyrihaximus.net:7132/");
+        let res = http.get("http://wyrihaximus.net:7132/");
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "https://wyrihaximus.net:7132/",
+            "location header is set with correct value": (r) => r.headers.Location === "http://www.wyrihaximus.net:7132/",
         });
         errorRate.add(!result);
     });
     group("bbc.co.uk", function() {
-        let res = http.get("http://www.bbc.co.uk:7132/");
+        let res = http.get("http://bbc.co.uk:7132/");
         let result = check(res, {
             "is status 301": (r) => r.status === 301,
             "location header is set": (r) => r.headers.Location !== undefined,
-            "location header is set with correct value": (r) => r.headers.Location === "https://bbc.co.uk:7132/",
+            "location header is set with correct value": (r) => r.headers.Location === "http://www.bbc.co.uk:7132/",
         });
         errorRate.add(!result);
     });

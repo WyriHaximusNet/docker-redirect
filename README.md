@@ -32,13 +32,15 @@ These images comes with 3 mandatory configuration options:
 * `buildin.wwwToNonWww` - Redirects `www.DOMAIN.TLD` to `DOMAIN.TLD`; mutually exclusive with `buildin.nonWwwToWww` 
 * `buildin.nonWwwToWww` - Redirects `DOMAIN.TLD` to `www.DOMAIN.TLD`; mutually exclusive with `buildin.wwwToNonWww`
 
-There is also one optional configuration option for custom hostname based redirection:
+There are also two optional configuration options for custom hostname based redirection, and HTTPS enforcement:
 * `hosts` - from -> to based key value mapping
+* `enforceHttps` - boolean for enforcing redirecting to HTTPS or not, defaults to false 
 
 Full configuration example:
 
 ```yaml
 defaultFallbackTarget: https://blog.wyrihaximus.net/
+enforceHttps: true
 buildin:
   wwwToNonWww: false
   nonWwwToWww: true
