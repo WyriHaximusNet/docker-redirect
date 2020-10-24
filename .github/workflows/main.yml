@@ -158,6 +158,7 @@ jobs:
         env:
           IMAGE_ID: ${{ steps.ps.outputs.id }}
   push-image:
+    if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
     name: Push ${{ matrix.image }}
     strategy:
       matrix:
@@ -168,27 +169,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@master
-        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
         with:
           name: docker-image-${{ matrix.image }}
           path: ./docker-image
       - run: docker load --input ./docker-image/docker_image.tar
-        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
       - run: rm -Rf ./docker-image/
-        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
       - name: Login to Docker Hub
-        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
         run: |
           echo "${{ secrets.HUB_PASSCODE }}" | \
           docker login \
             --username "${{ secrets.HUB_USERNAME }}" \
             --password-stdin
       - name: Docker info
-        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
         run: docker info
       - name: Echo full tag
-        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
         run: echo -e "${DOCKER_IMAGE}:${{ matrix.image }}"
       - name: Push image to Docker Hub
-        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
         run: docker push "${DOCKER_IMAGE}:${{ matrix.image }}"
