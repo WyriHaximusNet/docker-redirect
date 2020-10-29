@@ -2090,16 +2090,16 @@
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.3.15",
+            "version": "1.3.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "2964c45ba3d742495686a098cf9e932c05b9dd7d"
+                "reference": "354789df3b699be8a248a7a5a9030a9a2bb30e29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/2964c45ba3d742495686a098cf9e932c05b9dd7d",
-                "reference": "2964c45ba3d742495686a098cf9e932c05b9dd7d",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/354789df3b699be8a248a7a5a9030a9a2bb30e29",
+                "reference": "354789df3b699be8a248a7a5a9030a9a2bb30e29",
                 "shasum": ""
             },
             "require": {
@@ -2129,7 +2129,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-29T10:54:24+00:00"
+            "time": "2020-10-27T15:59:58+00:00"
         },
         {
             "name": "wyrihaximus/iterator-or-array-to-array",
