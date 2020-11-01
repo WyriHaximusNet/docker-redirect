@@ -1,11 +1,23 @@
 name: Continuous Integration
 env:
   DOCKER_IMAGE: wyrihaximusnet/redirect
+  DOCKER_IMAGE_REGISTRIES_SECRET_MAPPING: '{"ghcr.io":"GHCR_TOKEN","docker.io":"HUB_PASSCODE"}'
 on:
   push:
   schedule:
     - cron:  '0 0 * * 0'
 jobs:
+  registry-matrix:
+    name: Extract registries from registry secret mapping
+    runs-on: ubuntu-latest
+    outputs:
+      registry: ${{ steps.registry-matrix.outputs.registry }}
+    steps:
+      - uses: actions/checkout@v1
+      - id: registry-matrix
+        name: Extract registries from registry secret mapping
+        run: |
+          echo "::set-output name=registry::$(printenv DOCKER_IMAGE_REGISTRIES_SECRET_MAPPING | jq -c 'keys')"
   generate-image-strategy:
     name: Generate Image Strategy
     runs-on: ubuntu-latest
@@ -163,14 +175,16 @@ jobs:
           IMAGE_ID: ${{ steps.ps.outputs.id }}
   push-image:
     if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/master'
-    name: Push ${{ matrix.image }}
+    name: Push ${{ matrix.image }} to ${{ matrix.registry }}
     strategy:
       fail-fast: false
       matrix:
+        registry: ${{ fromJson(needs.registry-matrix.outputs.registry) }}
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     needs:
       - generate-image-strategy
       - tests
+      - registry-matrix
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@master
@@ -179,15 +193,19 @@ jobs:
           path: ./docker-image
       - run: docker load --input ./docker-image/docker_image.tar
       - run: rm -Rf ./docker-image/
-      - name: Login to Docker Hub
+      - name: Login to ${{ matrix.registry }}
         run: |
-          echo "${{ secrets.HUB_PASSCODE }}" | \
-          docker login \
-            --username "${{ secrets.HUB_USERNAME }}" \
+          echo "${{ env.DOCKER_PASSWORD }}" | \
+          docker login ${{ matrix.registry }} \
+            --username "${{ env.DOCKER_USER }}" \
             --password-stdin
+        env:
+          DOCKER_USER: ${{ secrets.HUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets[fromJson(env.DOCKER_IMAGE_REGISTRIES_SECRET_MAPPING)[matrix.registry]] }}
       - name: Docker info
         run: docker info
+      - run: docker tag ${DOCKER_IMAGE}:${{ matrix.image }} ${{ matrix.registry }}/${DOCKER_IMAGE}:${{ matrix.image }}
       - name: Echo full tag
-        run: echo -e "${DOCKER_IMAGE}:${{ matrix.image }}"
+        run: echo -e "${{ matrix.registry }}/${DOCKER_IMAGE}:${{ matrix.image }}"
       - name: Push image to Docker Hub
-        run: docker push "${DOCKER_IMAGE}:${{ matrix.image }}"
+        run: docker push "${{ matrix.registry }}/${DOCKER_IMAGE}:${{ matrix.image }}"
