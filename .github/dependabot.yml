@@ -1,0 +1,26 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: "/images/reactphp"
+  schedule:
+    interval: daily
+  labels:
+  - Dependencies
+- package-ecosystem: docker
+  directory: "/images/reactphp"
+  schedule:
+    interval: daily
+  labels:
+  - Dependencies
+- package-ecosystem: npm
+  directory: "/images/nodejs"
+  schedule:
+    interval: daily
+  labels:
+  - Dependencies
+- package-ecosystem: docker
+  directory: "/images/nodejs"
+  schedule:
+    interval: daily
+  labels:
+  - Dependencies
