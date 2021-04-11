@@ -2004,12 +2004,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
@@ -2090,16 +2090,16 @@
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.3.16",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "354789df3b699be8a248a7a5a9030a9a2bb30e29"
+                "reference": "b6936696b94514fdb02658e68d5699088b531c3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/354789df3b699be8a248a7a5a9030a9a2bb30e29",
-                "reference": "354789df3b699be8a248a7a5a9030a9a2bb30e29",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/b6936696b94514fdb02658e68d5699088b531c3e",
+                "reference": "b6936696b94514fdb02658e68d5699088b531c3e",
                 "shasum": ""
             },
             "require": {
@@ -2129,7 +2129,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-27T15:59:58+00:00"
+            "time": "2021-03-02T17:22:54+00:00"
         },
         {
             "name": "wyrihaximus/iterator-or-array-to-array",
