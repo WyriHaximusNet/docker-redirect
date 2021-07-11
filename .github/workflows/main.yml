@@ -95,22 +95,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Install clair-scanner
-        run: |
-          sudo curl -L https://github.com/arminc/clair-scanner/releases/download/v8/clair-scanner_linux_amd64 -o /usr/local/bin/clair-scanner
-          sudo chmod +x /usr/local/bin/clair-scanner
       - uses: actions/download-artifact@master
         with:
           name: docker-image-${{ matrix.image }}
           path: ./docker-image
       - run: docker load --input ./docker-image/docker_image.tar
       - run: rm -Rf ./docker-image/
-      - run: mkdir -p "./clair/${DOCKER_IMAGE}"
-      - run: docker-compose -f .docker/security/docker-compose.yml -p clair-ci up -d
-      #      - run: RETRIES=0 && while ! wget -T 10 -q -O /dev/null http://localhost:6060/v1/namespaces ; do sleep 1 ; echo -n "." ; if [ $${RETRIES} -eq 10 ] ; then echo " Timeout, aborting." ; exit 1 ; fi ; RETRIES=$$(($${RETRIES}+1)) ; done
-      - run: sleep 10
-      - run: echo -e "${DOCKER_IMAGE}:${{ matrix.image }}" | xargs -I % sh -c 'clair-scanner --ip 172.17.0.1 -r "./clair/%.json" -l ./clair/clair.log % || (echo "% is vulnerable" && exit 1)'
-      - run: docker-compose -f .docker/security/docker-compose.yml -p clair-ci down
+      - run: echo -e "${DOCKER_IMAGE}:${{ matrix.image }}" | xargs -I % sh -c 'docker run -v /tmp/trivy:/var/lib/trivy -v /var/run/docker.sock:/var/run/docker.sock -t aquasec/trivy:latest --cache-dir /var/lib/trivy image --exit-code 1 --no-progress --format table %'
   tests:
     name: Test ${{ matrix.image }} against ${{ matrix.rule }}
     needs:
