@@ -163,13 +163,13 @@ const handler = function (req, res) {
 const redirectServer = http.createServer(handler);
 redirectServer.listen(7132, '0.0.0.0');
 
-const metricsServer = http.createServer((req, res) => {
+const metricsServer = http.createServer(async (req, res) => {
     res.writeHead(
         200,
         {
             'Content-Type': register.contentType,
         }
-    ).end(register.metrics());
+    ).end(await register.metrics());
 });
 metricsServer.listen(7133, '0.0.0.0');
 
