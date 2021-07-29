@@ -2076,16 +2076,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.23.0",
+            "version": "v1.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "2df51500adbaebdc4c38dea4c89a2e131c45c8a1"
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/2df51500adbaebdc4c38dea4c89a2e131c45c8a1",
-                "reference": "2df51500adbaebdc4c38dea4c89a2e131c45c8a1",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9174a3d80210dca8daa7f31fec659150bbeabfc6",
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6",
                 "shasum": ""
             },
             "require": {
@@ -2136,7 +2136,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.1"
             },
             "funding": [
                 {
@@ -2152,7 +2152,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-27T09:27:20+00:00"
+            "time": "2021-05-27T12:26:48+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -2543,16 +2543,16 @@
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.8.2",
+            "version": "1.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "b7e7b975d4951ace0f9734a87a4f3bed45ad55b8"
+                "reference": "0c6dd51d85d1cc74be596cebd8bdb4a7b2d3ba8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/b7e7b975d4951ace0f9734a87a4f3bed45ad55b8",
-                "reference": "b7e7b975d4951ace0f9734a87a4f3bed45ad55b8",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/0c6dd51d85d1cc74be596cebd8bdb4a7b2d3ba8f",
+                "reference": "0c6dd51d85d1cc74be596cebd8bdb4a7b2d3ba8f",
                 "shasum": ""
             },
             "require": {
@@ -2579,7 +2579,7 @@
             "description": "Ever wanted a fake non-existing version number of PHP, well this package is for you!",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-fake-php-version/issues",
-                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.8.2"
+                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.8.3"
             },
             "funding": [
                 {
@@ -2587,7 +2587,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-29T08:58:25+00:00"
+            "time": "2021-07-29T13:05:58+00:00"
         },
         {
             "name": "wyrihaximus/iterator-or-array-to-array",
