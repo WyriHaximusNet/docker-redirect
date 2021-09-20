@@ -2076,16 +2076,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.23.0",
+            "version": "v1.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "2df51500adbaebdc4c38dea4c89a2e131c45c8a1"
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/2df51500adbaebdc4c38dea4c89a2e131c45c8a1",
-                "reference": "2df51500adbaebdc4c38dea4c89a2e131c45c8a1",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9174a3d80210dca8daa7f31fec659150bbeabfc6",
+                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6",
                 "shasum": ""
             },
             "require": {
@@ -2136,7 +2136,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.1"
             },
             "funding": [
                 {
@@ -2152,7 +2152,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-27T09:27:20+00:00"
+            "time": "2021-05-27T12:26:48+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -2370,16 +2370,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.3.2",
+            "version": "v3.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "21578f00e83d4a82ecfa3d50752b609f13de6790"
+                "reference": "a27fa056df8a6384316288ca8b0fa3a35fdeb569"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/21578f00e83d4a82ecfa3d50752b609f13de6790",
-                "reference": "21578f00e83d4a82ecfa3d50752b609f13de6790",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a27fa056df8a6384316288ca8b0fa3a35fdeb569",
+                "reference": "a27fa056df8a6384316288ca8b0fa3a35fdeb569",
                 "shasum": ""
             },
             "require": {
@@ -2389,7 +2389,7 @@
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/phpunit-bridge": "^4.4.9|^5.0.9"
+                "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
             },
             "type": "library",
             "extra": {
@@ -2430,7 +2430,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.3.2"
+                "source": "https://github.com/twigphp/Twig/tree/v3.3.3"
             },
             "funding": [
                 {
@@ -2442,7 +2442,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-16T12:14:13+00:00"
+            "time": "2021-09-17T08:44:23+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -2543,16 +2543,16 @@
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.8.2",
+            "version": "1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "b7e7b975d4951ace0f9734a87a4f3bed45ad55b8"
+                "reference": "e0d23d568281b905bd583a74c6e0b8120c690774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/b7e7b975d4951ace0f9734a87a4f3bed45ad55b8",
-                "reference": "b7e7b975d4951ace0f9734a87a4f3bed45ad55b8",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/e0d23d568281b905bd583a74c6e0b8120c690774",
+                "reference": "e0d23d568281b905bd583a74c6e0b8120c690774",
                 "shasum": ""
             },
             "require": {
@@ -2579,7 +2579,7 @@
             "description": "Ever wanted a fake non-existing version number of PHP, well this package is for you!",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-fake-php-version/issues",
-                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.8.2"
+                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.8.4"
             },
             "funding": [
                 {
@@ -2587,7 +2587,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-29T08:58:25+00:00"
+            "time": "2021-08-24T15:54:22+00:00"
         },
         {
             "name": "wyrihaximus/iterator-or-array-to-array",
@@ -2688,24 +2688,24 @@
         },
         {
             "name": "wyrihaximus/simple-twig",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-simple-twig.git",
-                "reference": "0f0bc8f0484daec4ceb90755a19d448d3836c583"
+                "reference": "aa0d055c13a25b0318aa55edaea13fe12af15939"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-simple-twig/zipball/0f0bc8f0484daec4ceb90755a19d448d3836c583",
-                "reference": "0f0bc8f0484daec4ceb90755a19d448d3836c583",
+                "url": "https://api.github.com/repos/WyriHaximus/php-simple-twig/zipball/aa0d055c13a25b0318aa55edaea13fe12af15939",
+                "reference": "aa0d055c13a25b0318aa55edaea13fe12af15939",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4",
-                "twig/twig": "^3"
+                "php": "^8 || ^7.4",
+                "twig/twig": "^3.3.2"
             },
             "require-dev": {
-                "wyrihaximus/test-utilities": "^2.9"
+                "wyrihaximus/test-utilities": "^3.7.3"
             },
             "type": "library",
             "autoload": {
@@ -2729,7 +2729,7 @@
             "description": "🌱 Wrapper around Twig making rendering a string template trivial",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-simple-twig/issues",
-                "source": "https://github.com/WyriHaximus/php-simple-twig/tree/2.0.0"
+                "source": "https://github.com/WyriHaximus/php-simple-twig/tree/2.1.0"
             },
             "funding": [
                 {
@@ -2737,7 +2737,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-26T20:27:45+00:00"
+            "time": "2021-09-08T22:05:38+00:00"
         },
         {
             "name": "wyrihaximus/ticking-promise",
