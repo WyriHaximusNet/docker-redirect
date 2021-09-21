@@ -8,25 +8,26 @@
     "packages": [
         {
             "name": "api-clients/rx",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-api-clients/rx.git",
-                "reference": "c38d42768ebdb6e396066bc03055c3c9117bc6e9"
+                "reference": "0e8c4ed930482d50d0107e30d7e8230d2e517f0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-api-clients/rx/zipball/c38d42768ebdb6e396066bc03055c3c9117bc6e9",
-                "reference": "c38d42768ebdb6e396066bc03055c3c9117bc6e9",
+                "url": "https://api.github.com/repos/php-api-clients/rx/zipball/0e8c4ed930482d50d0107e30d7e8230d2e517f0e",
+                "reference": "0e8c4ed930482d50d0107e30d7e8230d2e517f0e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
-                "react/promise": "^2.4",
+                "php": "^8 || ^7.4",
+                "react/event-loop": "^1.2",
+                "react/promise": "^2.7",
                 "reactivex/rxphp": "^2.0"
             },
             "require-dev": {
-                "api-clients/test-utilities": "^3.0.1"
+                "api-clients/test-utilities": "^3.1.0"
             },
             "type": "library",
             "autoload": {
@@ -48,11 +49,18 @@
                     "email": "ceesjank@gmail.com"
                 }
             ],
+            "description": "RxPHP utilities",
             "support": {
                 "issues": "https://github.com/php-api-clients/rx/issues",
-                "source": "https://github.com/php-api-clients/rx/tree/master"
+                "source": "https://github.com/php-api-clients/rx/tree/2.3.0"
             },
-            "time": "2017-10-04T20:00:12+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-09-07T23:00:55+00:00"
         },
         {
             "name": "evenement/evenement",
@@ -763,16 +771,16 @@
         },
         {
             "name": "react-inspector/metrics",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp-inspector/metrics.git",
-                "reference": "ce69b934b1dcaa6b284e33c6920058f308daddda"
+                "reference": "7b9a4ebd96b81b5b6d8df53385dc145438309e85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/metrics/zipball/ce69b934b1dcaa6b284e33c6920058f308daddda",
-                "reference": "ce69b934b1dcaa6b284e33c6920058f308daddda",
+                "url": "https://api.github.com/repos/reactphp-inspector/metrics/zipball/7b9a4ebd96b81b5b6d8df53385dc145438309e85",
+                "reference": "7b9a4ebd96b81b5b6d8df53385dc145438309e85",
                 "shasum": ""
             },
             "require": {
@@ -781,8 +789,7 @@
                 "react-inspector/metric": "^1.0",
                 "react/event-loop": "^1.1",
                 "reactivex/rxphp": "^2.0",
-                "thecodingmachine/safe": "^1.0",
-                "wyrihaximus/ticking-promise": "^1.6 || ^2.0"
+                "thecodingmachine/safe": "^1.0"
             },
             "require-dev": {
                 "wyrihaximus/async-test-utilities": "^2.0"
@@ -831,7 +838,7 @@
             "description": "☄ Metrics stream",
             "support": {
                 "issues": "https://github.com/reactphp-inspector/metrics/issues",
-                "source": "https://github.com/reactphp-inspector/metrics/tree/1.0.1"
+                "source": "https://github.com/reactphp-inspector/metrics/tree/1.0.2"
             },
             "funding": [
                 {
@@ -839,7 +846,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-10T13:25:48+00:00"
+            "time": "2021-08-15T11:54:04+00:00"
         },
         {
             "name": "react-inspector/printer",
@@ -2738,61 +2745,6 @@
                 }
             ],
             "time": "2021-09-08T22:05:38+00:00"
-        },
-        {
-            "name": "wyrihaximus/ticking-promise",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/WyriHaximus/TickingPromise.git",
-                "reference": "d3903d4bebe8e3c5b11464c0bb81802cdeeb3751"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/TickingPromise/zipball/d3903d4bebe8e3c5b11464c0bb81802cdeeb3751",
-                "reference": "d3903d4bebe8e3c5b11464c0bb81802cdeeb3751",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8 || ^7.4",
-                "react/event-loop": "^1.0",
-                "react/promise": "^2.8"
-            },
-            "require-dev": {
-                "wyrihaximus/async-test-utilities": "^3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "WyriHaximus\\React\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "http://wyrihaximus.net/"
-                }
-            ],
-            "description": "Wrapping ticks into a promise",
-            "support": {
-                "issues": "https://github.com/WyriHaximus/TickingPromise/issues",
-                "source": "https://github.com/WyriHaximus/TickingPromise/tree/2.1.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/WyriHaximus",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-11-25T12:43:21+00:00"
         }
     ],
     "packages-dev": [],
