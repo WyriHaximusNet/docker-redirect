@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56893a407ca9985c02621d0dc66e74ed",
+    "content-hash": "1513078b6ebde37323aa455800eacef2",
     "packages": [
         {
             "name": "api-clients/rx",
@@ -147,6 +147,67 @@
                 "source": "https://github.com/JetBrains/phpstorm-stubs/tree/master"
             },
             "time": "2019-12-05T16:56:26+00:00"
+        },
+        {
+            "name": "lcobucci/clock",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lcobucci/clock.git",
+                "reference": "353d83fe2e6ae95745b16b3d911813df6a05bfb3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lcobucci/clock/zipball/353d83fe2e6ae95745b16b3d911813df6a05bfb3",
+                "reference": "353d83fe2e6ae95745b16b3d911813df6a05bfb3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "infection/infection": "^0.17",
+                "lcobucci/coding-standard": "^6.0",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-deprecation-rules": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/php-code-coverage": "9.1.4",
+                "phpunit/phpunit": "9.3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lcobucci\\Clock\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luís Cobucci",
+                    "email": "lcobucci@gmail.com"
+                }
+            ],
+            "description": "Yet another clock abstraction",
+            "support": {
+                "issues": "https://github.com/lcobucci/clock/issues",
+                "source": "https://github.com/lcobucci/clock/tree/2.0.x"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/lcobucci",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/lcobucci",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-08-27T18:56:02+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -532,29 +593,28 @@
         },
         {
             "name": "react-inspector/http-middleware",
-            "version": "1.0.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp-inspector/http-middleware.git",
-                "reference": "b10c5b834eb466ec291338f35d35291007e2e38c"
+                "reference": "69f6c68cf8954cf03bb56b03bdc31e8525549554"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/http-middleware/zipball/b10c5b834eb466ec291338f35d35291007e2e38c",
-                "reference": "b10c5b834eb466ec291338f35d35291007e2e38c",
+                "url": "https://api.github.com/repos/reactphp-inspector/http-middleware/zipball/69f6c68cf8954cf03bb56b03bdc31e8525549554",
+                "reference": "69f6c68cf8954cf03bb56b03bdc31e8525549554",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4",
+                "php": "^8 || ^7.4",
                 "psr/http-message": "^1.0",
-                "react-inspector/metric": "^1.0",
-                "react-inspector/metrics": "^1.0",
                 "react/promise": "^2.7",
-                "reactivex/rxphp": "^2.0"
+                "wyrihaximus/metrics": "^1.0.1"
             },
             "require-dev": {
-                "ringcentral/psr7": "^1.2.2",
-                "wyrihaximus/async-test-utilities": "^2.0"
+                "ringcentral/psr7": "^1.3.0",
+                "thecodingmachine/safe": "^1.2",
+                "wyrihaximus/async-test-utilities": "^4.0.6"
             },
             "type": "library",
             "autoload": {
@@ -576,7 +636,7 @@
             "description": "🔭 Measure HTTP requests going through an react/http",
             "support": {
                 "issues": "https://github.com/reactphp-inspector/http-middleware/issues",
-                "source": "https://github.com/reactphp-inspector/http-middleware/tree/1.0.0"
+                "source": "https://github.com/reactphp-inspector/http-middleware/tree/2.2.0"
             },
             "funding": [
                 {
@@ -584,7 +644,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-20T23:40:17+00:00"
+            "time": "2021-11-08T19:01:13+00:00"
         },
         {
             "name": "react-inspector/http-middleware-printer",
@@ -997,6 +1057,62 @@
                 }
             ],
             "time": "2020-04-03T18:47:31+00:00"
+        },
+        {
+            "name": "react-parallel/object-proxy-attributes",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp-parallel/object-proxy-attributes.git",
+                "reference": "dd73ba13b3f36fb2d7c2bd8eecee2d774d0109d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp-parallel/object-proxy-attributes/zipball/dd73ba13b3f36fb2d7c2bd8eecee2d774d0109d0",
+                "reference": "dd73ba13b3f36fb2d7c2bd8eecee2d774d0109d0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.11",
+                "wyrihaximus/test-utilities": "^2.9"
+            },
+            "type": "library",
+            "extra": {
+                "unused": [
+                    "php"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "ReactParallel\\ObjectProxy\\Attribute\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "ceesjank@gmail.com",
+                    "homepage": "http://wyrihaximus.net/"
+                }
+            ],
+            "description": "👨‍🚀🛰👩‍🚀 Attributes for react-parallel/object-proxy",
+            "support": {
+                "issues": "https://github.com/reactphp-parallel/object-proxy-attributes/issues",
+                "source": "https://github.com/reactphp-parallel/object-proxy-attributes/tree/1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-10-31T14:14:06+00:00"
         },
         {
             "name": "react/cache",
@@ -2499,20 +2615,20 @@
         },
         {
             "name": "wyrihaximus/constants",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-constants.git",
-                "reference": "a2202b683261f8119f3772eb1e3469a2b5c4d9eb"
+                "reference": "32ceffdd881593c7fa24d8fcbf9deb58687484cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-constants/zipball/a2202b683261f8119f3772eb1e3469a2b5c4d9eb",
-                "reference": "a2202b683261f8119f3772eb1e3469a2b5c4d9eb",
+                "url": "https://api.github.com/repos/WyriHaximus/php-constants/zipball/32ceffdd881593c7fa24d8fcbf9deb58687484cb",
+                "reference": "32ceffdd881593c7fa24d8fcbf9deb58687484cb",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0 || ^5.3"
+                "php": "^8 || ^7 || ^5.3"
             },
             "type": "library",
             "autoload": {
@@ -2537,9 +2653,15 @@
             "description": "Collection of constants for PHP",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-constants/issues",
-                "source": "https://github.com/WyriHaximus/php-constants/tree/master"
+                "source": "https://github.com/WyriHaximus/php-constants/tree/1.6.0"
             },
-            "time": "2020-04-02T21:00:04+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-28T12:04:43+00:00"
         },
         {
             "name": "wyrihaximus/fake-php-version",
@@ -2632,6 +2754,60 @@
                 "source": "https://github.com/WyriHaximus/php-iterator-or-array-to-array/tree/master"
             },
             "time": "2018-12-29T20:17:57+00:00"
+        },
+        {
+            "name": "wyrihaximus/metrics",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WyriHaximus/php-metrics.git",
+                "reference": "cdf8ee62b5fa6b253ec8823070ea112671757f9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WyriHaximus/php-metrics/zipball/cdf8ee62b5fa6b253ec8823070ea112671757f9a",
+                "reference": "cdf8ee62b5fa6b253ec8823070ea112671757f9a",
+                "shasum": ""
+            },
+            "require": {
+                "lcobucci/clock": "^2.0",
+                "php": "^7.4",
+                "react-parallel/object-proxy-attributes": "^1",
+                "thecodingmachine/safe": "^1.1",
+                "wyrihaximus/constants": "^1.5"
+            },
+            "require-dev": {
+                "phpbench/phpbench": "^0.17.1",
+                "wyrihaximus/test-utilities": "^2.5 || ^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WyriHaximus\\Metrics\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "ceesjank@gmail.com"
+                }
+            ],
+            "description": "🕵️‍♀️ Prometheus modelled metric VO's and registry",
+            "support": {
+                "issues": "https://github.com/WyriHaximus/php-metrics/issues",
+                "source": "https://github.com/WyriHaximus/php-metrics/tree/1.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-17T22:53:16+00:00"
         },
         {
             "name": "wyrihaximus/react-http-middleware-with-headers",
