@@ -2543,16 +2543,16 @@
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.8.5",
+            "version": "1.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "0bbdc814e372ed4805b014822258cd4824004a64"
+                "reference": "36f0dd223640d21550828d4a59f76f981433ce73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/0bbdc814e372ed4805b014822258cd4824004a64",
-                "reference": "0bbdc814e372ed4805b014822258cd4824004a64",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/36f0dd223640d21550828d4a59f76f981433ce73",
+                "reference": "36f0dd223640d21550828d4a59f76f981433ce73",
                 "shasum": ""
             },
             "require": {
@@ -2579,7 +2579,7 @@
             "description": "Ever wanted a fake non-existing version number of PHP, well this package is for you!",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-fake-php-version/issues",
-                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.8.5"
+                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.8.8"
             },
             "funding": [
                 {
@@ -2587,7 +2587,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-21T17:58:12+00:00"
+            "time": "2021-11-23T19:54:02+00:00"
         },
         {
             "name": "wyrihaximus/iterator-or-array-to-array",
