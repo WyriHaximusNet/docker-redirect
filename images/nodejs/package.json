@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "is-ip": "^3.1.0",
-    "prom-client": "^14.0.0",
+    "prom-client": "^14.1.0",
     "yaml": "^1.10.2"
   }
 }
