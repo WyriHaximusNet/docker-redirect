@@ -7,7 +7,7 @@
         "wyrihaximus/react-http-middleware-with-headers": "^2.0",
         "react-inspector/http-middleware-printer": "^1.0",
         "react-inspector/prometheus-printer": "^1.0",
-        "react-inspector/http-middleware": "^1.0",
+        "react-inspector/http-middleware": "^2.2",
         "react-inspector/event-loop": "^1.0",
         "react-inspector/stream": "^1.0",
         "react-inspector/memory-usage": "^1.0",
