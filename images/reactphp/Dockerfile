@@ -1,4 +1,4 @@
-FROM wyrihaximusnet/php:8.4-nts-alpine-slim-dev AS install-dependencies
+FROM wyrihaximusnet/php:8.3-nts-alpine-slim-dev AS install-dependencies
 
 WORKDIR /opt/app
 USER root
@@ -8,7 +8,7 @@ USER app
 COPY ./composer.* /opt/app/
 RUN composer install --ansi --no-interaction --prefer-dist --no-dev -o
 
-FROM wyrihaximusnet/php:8.4-nts-alpine-slim
+FROM wyrihaximusnet/php:8.3-nts-alpine-slim
 
 EXPOSE 7132
 EXPOSE 7133

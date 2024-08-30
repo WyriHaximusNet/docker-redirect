@@ -4,56 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56893a407ca9985c02621d0dc66e74ed",
+    "content-hash": "758bb16c0a6fec665da79c0a3ba9b991",
     "packages": [
-        {
-            "name": "api-clients/rx",
-            "version": "2.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-api-clients/rx.git",
-                "reference": "c38d42768ebdb6e396066bc03055c3c9117bc6e9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-api-clients/rx/zipball/c38d42768ebdb6e396066bc03055c3c9117bc6e9",
-                "reference": "c38d42768ebdb6e396066bc03055c3c9117bc6e9",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0",
-                "react/promise": "^2.4",
-                "reactivex/rxphp": "^2.0"
-            },
-            "require-dev": {
-                "api-clients/test-utilities": "^3.0.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ApiClients\\Tools\\Rx\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php",
-                    "src/bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com"
-                }
-            ],
-            "support": {
-                "issues": "https://github.com/php-api-clients/rx/issues",
-                "source": "https://github.com/php-api-clients/rx/tree/master"
-            },
-            "time": "2017-10-04T20:00:12+00:00"
-        },
         {
             "name": "evenement/evenement",
             "version": "v3.0.2",
@@ -159,23 +111,24 @@
         },
         {
             "name": "jetbrains/phpstorm-stubs",
-            "version": "v2019.3",
+            "version": "v2023.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JetBrains/phpstorm-stubs.git",
-                "reference": "883b6facd78e01c0743b554af86fa590c2573f40"
+                "reference": "99d8bcab934ae5362f33660b1cd4b8c4d617c40b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JetBrains/phpstorm-stubs/zipball/883b6facd78e01c0743b554af86fa590c2573f40",
-                "reference": "883b6facd78e01c0743b554af86fa590c2573f40",
+                "url": "https://api.github.com/repos/JetBrains/phpstorm-stubs/zipball/99d8bcab934ae5362f33660b1cd4b8c4d617c40b",
+                "reference": "99d8bcab934ae5362f33660b1cd4b8c4d617c40b",
                 "shasum": ""
             },
             "require-dev": {
-                "nikic/php-parser": "^4",
-                "php": "^7.1",
-                "phpdocumentor/reflection-docblock": "^4.3",
-                "phpunit/phpunit": "^7"
+                "friendsofphp/php-cs-fixer": "@stable",
+                "nikic/php-parser": "@stable",
+                "php": "^8.0",
+                "phpdocumentor/reflection-docblock": "@stable",
+                "phpunit/phpunit": "^9.6"
             },
             "type": "library",
             "autoload": {
@@ -200,31 +153,95 @@
                 "type"
             ],
             "support": {
-                "source": "https://github.com/JetBrains/phpstorm-stubs/tree/master"
+                "source": "https://github.com/JetBrains/phpstorm-stubs/tree/v2023.3"
             },
-            "time": "2019-12-05T16:56:26+00:00"
+            "time": "2023-11-01T18:52:29+00:00"
         },
         {
-            "name": "nikic/php-parser",
-            "version": "v4.6.0",
+            "name": "lcobucci/clock",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "c346bbfafe2ff60680258b631afb730d186ed864"
+                "url": "https://github.com/lcobucci/clock.git",
+                "reference": "db3713a61addfffd615b79bf0bc22f0ccc61b86b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c346bbfafe2ff60680258b631afb730d186ed864",
-                "reference": "c346bbfafe2ff60680258b631afb730d186ed864",
+                "url": "https://api.github.com/repos/lcobucci/clock/zipball/db3713a61addfffd615b79bf0bc22f0ccc61b86b",
+                "reference": "db3713a61addfffd615b79bf0bc22f0ccc61b86b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+                "psr/clock": "^1.0"
+            },
+            "provide": {
+                "psr/clock-implementation": "1.0"
+            },
+            "require-dev": {
+                "infection/infection": "^0.29",
+                "lcobucci/coding-standard": "^11.1.0",
+                "phpstan/extension-installer": "^1.3.1",
+                "phpstan/phpstan": "^1.10.25",
+                "phpstan/phpstan-deprecation-rules": "^1.1.3",
+                "phpstan/phpstan-phpunit": "^1.3.13",
+                "phpstan/phpstan-strict-rules": "^1.5.1",
+                "phpunit/phpunit": "^11.3.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lcobucci\\Clock\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luís Cobucci",
+                    "email": "lcobucci@gmail.com"
+                }
+            ],
+            "description": "Yet another clock abstraction",
+            "support": {
+                "issues": "https://github.com/lcobucci/clock/issues",
+                "source": "https://github.com/lcobucci/clock/tree/3.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/lcobucci",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/lcobucci",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-09-24T20:45:14+00:00"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v4.19.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "0ed4c8949a32986043e977dbe14776c14d644c45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/0ed4c8949a32986043e977dbe14776c14d644c45",
+                "reference": "0ed4c8949a32986043e977dbe14776c14d644c45",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
-                "php": ">=7.0"
+                "php": ">=7.1"
             },
             "require-dev": {
-                "ircmaxell/php-yacc": "0.0.5",
-                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
+                "ircmaxell/php-yacc": "^0.0.7",
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -232,7 +249,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.9-dev"
                 }
             },
             "autoload": {
@@ -256,36 +273,31 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.6.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.19.2"
             },
-            "time": "2020-07-02T17:12:47+00:00"
+            "time": "2024-09-17T19:36:00+00:00"
         },
         {
-            "name": "phpdocumentor/reflection-common",
-            "version": "2.2.0",
+            "name": "psr/clock",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-                "reference": "1d01c49d4ed62f25aa84a747ad35d5a16924662b"
+                "url": "https://github.com/php-fig/clock.git",
+                "reference": "e41a24703d4560fd0acb709162f73b8adfc3aa0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/1d01c49d4ed62f25aa84a747ad35d5a16924662b",
-                "reference": "1d01c49d4ed62f25aa84a747ad35d5a16924662b",
+                "url": "https://api.github.com/repos/php-fig/clock/zipball/e41a24703d4560fd0acb709162f73b8adfc3aa0d",
+                "reference": "e41a24703d4560fd0acb709162f73b8adfc3aa0d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0"
+                "php": "^7.0 || ^8.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "phpDocumentor\\Reflection\\": "src/"
+                    "Psr\\Clock\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -294,130 +306,24 @@
             ],
             "authors": [
                 {
-                    "name": "Jaap van Otterdijk",
-                    "email": "opensource@ijaap.nl"
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
-            "description": "Common reflection classes used by phpdocumentor to reflect the code structure",
-            "homepage": "http://www.phpdoc.org",
+            "description": "Common interface for reading the clock.",
+            "homepage": "https://github.com/php-fig/clock",
             "keywords": [
-                "FQSEN",
-                "phpDocumentor",
-                "phpdoc",
-                "reflection",
-                "static analysis"
+                "clock",
+                "now",
+                "psr",
+                "psr-20",
+                "time"
             ],
             "support": {
-                "issues": "https://github.com/phpDocumentor/ReflectionCommon/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionCommon/tree/2.x"
+                "issues": "https://github.com/php-fig/clock/issues",
+                "source": "https://github.com/php-fig/clock/tree/1.0.0"
             },
-            "time": "2020-06-27T09:03:43+00:00"
-        },
-        {
-            "name": "phpdocumentor/reflection-docblock",
-            "version": "5.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e",
-                "reference": "cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-filter": "^7.1",
-                "php": "^7.2",
-                "phpdocumentor/reflection-common": "^2.0",
-                "phpdocumentor/type-resolver": "^1.0",
-                "webmozart/assert": "^1"
-            },
-            "require-dev": {
-                "doctrine/instantiator": "^1",
-                "mockery/mockery": "^1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "phpDocumentor\\Reflection\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mike van Riel",
-                    "email": "me@mikevanriel.com"
-                },
-                {
-                    "name": "Jaap van Otterdijk",
-                    "email": "account@ijaap.nl"
-                }
-            ],
-            "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "support": {
-                "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.1.0"
-            },
-            "time": "2020-02-22T12:28:44+00:00"
-        },
-        {
-            "name": "phpdocumentor/type-resolver",
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/e878a14a65245fbe78f8080eba03b47c3b705651",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2 || ^8.0",
-                "phpdocumentor/reflection-common": "^2.0"
-            },
-            "require-dev": {
-                "ext-tokenizer": "*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "phpDocumentor\\Reflection\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mike van Riel",
-                    "email": "me@mikevanriel.com"
-                }
-            ],
-            "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "support": {
-                "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.x"
-            },
-            "time": "2020-06-27T10:12:23+00:00"
+            "time": "2022-11-25T14:36:26+00:00"
         },
         {
             "name": "psr/http-message",
@@ -473,91 +379,35 @@
             "time": "2023-04-04T09:50:52+00:00"
         },
         {
-            "name": "react-inspector/collector-merger",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp-inspector/collector-merger.git",
-                "reference": "b039a5c9c961d1a60a74848f938c081128b14e7a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/collector-merger/zipball/b039a5c9c961d1a60a74848f938c081128b14e7a",
-                "reference": "b039a5c9c961d1a60a74848f938c081128b14e7a",
-                "shasum": ""
-            },
-            "require": {
-                "api-clients/rx": "^2.2",
-                "php": "^7.4",
-                "react-inspector/metric": "^1.0",
-                "react-inspector/metrics": "^1.0",
-                "react/promise": "^2.7",
-                "reactivex/rxphp": "^2.0",
-                "thecodingmachine/safe": "^1.0"
-            },
-            "require-dev": {
-                "wyrihaximus/async-test-utilities": "^2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ReactInspector\\Collector\\Merger\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "https://www.wyrihaximus.net/"
-                }
-            ],
-            "description": "⛲⛲ Combine metrics from the same collector into one metric",
-            "support": {
-                "issues": "https://github.com/reactphp-inspector/collector-merger/issues",
-                "source": "https://github.com/reactphp-inspector/collector-merger/tree/master"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/WyriHaximus",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-03-18T18:38:57+00:00"
-        },
-        {
             "name": "react-inspector/event-loop",
-            "version": "1.0.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp-inspector/event-loop.git",
-                "reference": "7e78aaaf8feacec38e56b0a07233ab96731f2130"
+                "reference": "37c41d83b0456b108d0dcc2d1ee2a5eead9d3bf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/event-loop/zipball/7e78aaaf8feacec38e56b0a07233ab96731f2130",
-                "reference": "7e78aaaf8feacec38e56b0a07233ab96731f2130",
+                "url": "https://api.github.com/repos/reactphp-inspector/event-loop/zipball/37c41d83b0456b108d0dcc2d1ee2a5eead9d3bf2",
+                "reference": "37c41d83b0456b108d0dcc2d1ee2a5eead9d3bf2",
                 "shasum": ""
             },
             "require": {
-                "evenement/evenement": "^3.0 || ^2.0",
-                "php": "^7.4",
-                "react-inspector/metric": "^1.0",
-                "react-inspector/metrics": "^1.0",
-                "react/event-loop": "^1.1",
-                "reactivex/rxphp": "^2.0",
-                "wyrihaximus/constants": "^1.4",
-                "wyrihaximus/iterator-or-array-to-array": "^1.1"
+                "php": "^8.2",
+                "react-inspector/global-state": "^1",
+                "react/event-loop": "^1.5",
+                "wyrihaximus/metrics": "^2.1",
+                "wyrihaximus/metrics-lazy-registry": "^2.0"
             },
             "require-dev": {
-                "thecodingmachine/safe": "^1.1",
-                "wyrihaximus/async-test-utilities": "^2.0"
+                "ext-pcntl": "*",
+                "wyrihaximus/async-test-utilities": "^8"
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "src/bootstrap_include.php"
+                ],
                 "psr-4": {
                     "ReactInspector\\EventLoop\\": "src/"
                 }
@@ -576,7 +426,7 @@
             "description": "🌀 Measure the Event Loop",
             "support": {
                 "issues": "https://github.com/reactphp-inspector/event-loop/issues",
-                "source": "https://github.com/reactphp-inspector/event-loop/tree/1.0.0"
+                "source": "https://github.com/reactphp-inspector/event-loop/tree/2.0.0"
             },
             "funding": [
                 {
@@ -584,33 +434,95 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-29T20:52:27+00:00"
+            "time": "2024-09-24T05:25:07+00:00"
         },
         {
-            "name": "react-inspector/http-middleware",
+            "name": "react-inspector/global-state",
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/reactphp-inspector/http-middleware.git",
-                "reference": "b10c5b834eb466ec291338f35d35291007e2e38c"
+                "url": "https://github.com/reactphp-inspector/global-state.git",
+                "reference": "18ac86006bf716340ebacda47b50ff19ae48f5b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/http-middleware/zipball/b10c5b834eb466ec291338f35d35291007e2e38c",
-                "reference": "b10c5b834eb466ec291338f35d35291007e2e38c",
+                "url": "https://api.github.com/repos/reactphp-inspector/global-state/zipball/18ac86006bf716340ebacda47b50ff19ae48f5b6",
+                "reference": "18ac86006bf716340ebacda47b50ff19ae48f5b6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4",
-                "psr/http-message": "^1.0",
-                "react-inspector/metric": "^1.0",
-                "react-inspector/metrics": "^1.0",
-                "react/promise": "^2.7",
-                "reactivex/rxphp": "^2.0"
+                "php": "^8.2",
+                "wyrihaximus/metrics": "^2.1"
             },
             "require-dev": {
-                "ringcentral/psr7": "^1.2.2",
-                "wyrihaximus/async-test-utilities": "^2.0"
+                "wyrihaximus/test-utilities": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "react-inspector": {
+                    "metrics": [
+                        "inspector.metrics"
+                    ],
+                    "reset": {
+                        "ticks": [
+                            "inspector.metrics"
+                        ]
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ReactInspector\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "ceesjank@gmail.com",
+                    "homepage": "http://wyrihaximus.net/"
+                }
+            ],
+            "description": "☮ Global state singleton",
+            "support": {
+                "issues": "https://github.com/reactphp-inspector/global-state/issues",
+                "source": "https://github.com/reactphp-inspector/global-state/tree/1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-09-08T18:25:03+00:00"
+        },
+        {
+            "name": "react-inspector/http-middleware",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp-inspector/http-middleware.git",
+                "reference": "9b1875691baaad4cda30ff2eb99b725cef3be931"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp-inspector/http-middleware/zipball/9b1875691baaad4cda30ff2eb99b725cef3be931",
+                "reference": "9b1875691baaad4cda30ff2eb99b725cef3be931",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "psr/http-message": "^1.1 || ^2.0",
+                "react/promise": "^3.2",
+                "thecodingmachine/safe": "^2",
+                "wyrihaximus/metrics": "^2.1"
+            },
+            "require-dev": {
+                "nyholm/psr7": "^1.8",
+                "wyrihaximus/async-test-utilities": "^8.0.5"
             },
             "type": "library",
             "autoload": {
@@ -632,7 +544,7 @@
             "description": "🔭 Measure HTTP requests going through an react/http",
             "support": {
                 "issues": "https://github.com/reactphp-inspector/http-middleware/issues",
-                "source": "https://github.com/reactphp-inspector/http-middleware/tree/1.0.0"
+                "source": "https://github.com/reactphp-inspector/http-middleware/tree/3.1.0"
             },
             "funding": [
                 {
@@ -640,98 +552,32 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-20T23:40:17+00:00"
-        },
-        {
-            "name": "react-inspector/http-middleware-printer",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp-inspector/http-middleware-printer.git",
-                "reference": "cfdc7a3a147aa5c15d73b9ae12cdac4b3592ddf3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/http-middleware-printer/zipball/cfdc7a3a147aa5c15d73b9ae12cdac4b3592ddf3",
-                "reference": "cfdc7a3a147aa5c15d73b9ae12cdac4b3592ddf3",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4",
-                "psr/http-message": "^1.0",
-                "react-inspector/metric": "^1.0",
-                "react-inspector/metrics": "^1.0",
-                "react-inspector/printer": "^1.0",
-                "react/cache": "^1.0",
-                "react/promise": "^2.7",
-                "ringcentral/psr7": "^1.2.2"
-            },
-            "require-dev": {
-                "wyrihaximus/async-test-utilities": "^2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ReactInspector\\Http\\Middleware\\Printer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "http://wyrihaximus.net/"
-                }
-            ],
-            "description": "📰🏮 HTTP Middleware Metrics Printer",
-            "support": {
-                "issues": "https://github.com/reactphp-inspector/http-middleware-printer/issues",
-                "source": "https://github.com/reactphp-inspector/http-middleware-printer/tree/master"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/WyriHaximus",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-03-22T22:07:40+00:00"
+            "time": "2024-09-27T10:08:38+00:00"
         },
         {
             "name": "react-inspector/memory-usage",
-            "version": "1.0.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp-inspector/memory-usage.git",
-                "reference": "e720a6a121faa986df21f9313d7720892de86804"
+                "reference": "9b74645735583caf25342d5632588a2066f76623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/memory-usage/zipball/e720a6a121faa986df21f9313d7720892de86804",
-                "reference": "e720a6a121faa986df21f9313d7720892de86804",
+                "url": "https://api.github.com/repos/reactphp-inspector/memory-usage/zipball/9b74645735583caf25342d5632588a2066f76623",
+                "reference": "9b74645735583caf25342d5632588a2066f76623",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4",
-                "react-inspector/metric": "^1.0",
-                "react-inspector/metrics": "^1.0",
-                "reactivex/rxphp": "^2.0",
-                "thecodingmachine/safe": "^1.0",
-                "wyrihaximus/constants": "^1.4"
+                "php": "^8.2",
+                "react/event-loop": "^1.5",
+                "wyrihaximus/metrics": "^2.1"
             },
             "require-dev": {
-                "wyrihaximus/async-test-utilities": "^2.0"
+                "react/promise-timer": "^1.11",
+                "wyrihaximus/async-test-utilities": "^8"
             },
             "type": "library",
-            "extra": {
-                "react-inspector": {
-                    "collectors": {
-                        "ReactInspector\\MemoryUsage": "src"
-                    }
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "ReactInspector\\MemoryUsage\\": "src/"
@@ -745,13 +591,13 @@
                 {
                     "name": "Cees-Jan Kiewiet",
                     "email": "ceesjank@gmail.com",
-                    "homepage": "https://www.wyrihaximus.net/"
+                    "homepage": "http://wyrihaximus.net/"
                 }
             ],
-            "description": "📶 Measure the memory usage of the current PHP process",
+            "description": "🌀 Measure the Event Loop",
             "support": {
                 "issues": "https://github.com/reactphp-inspector/memory-usage/issues",
-                "source": "https://github.com/reactphp-inspector/memory-usage/tree/1.0.0"
+                "source": "https://github.com/reactphp-inspector/memory-usage/tree/2.0.0"
             },
             "funding": [
                 {
@@ -759,277 +605,44 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-23T21:48:23+00:00"
-        },
-        {
-            "name": "react-inspector/metric",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp-inspector/metric.git",
-                "reference": "8facabd382dc1b770155f09c8c101089619f975d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/metric/zipball/8facabd382dc1b770155f09c8c101089619f975d",
-                "reference": "8facabd382dc1b770155f09c8c101089619f975d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4",
-                "thecodingmachine/safe": "^1.0"
-            },
-            "require-dev": {
-                "wyrihaximus/test-utilities": "^2.0"
-            },
-            "type": "library",
-            "extra": {
-                "unused": [
-                    "php"
-                ]
-            },
-            "autoload": {
-                "psr-4": {
-                    "ReactInspector\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "https://www.wyrihaximus.net/"
-                }
-            ],
-            "description": "📐 Metric VO's",
-            "support": {
-                "issues": "https://github.com/reactphp-inspector/metric/issues",
-                "source": "https://github.com/reactphp-inspector/metric/tree/1.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/WyriHaximus",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-03-15T21:24:35+00:00"
-        },
-        {
-            "name": "react-inspector/metrics",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp-inspector/metrics.git",
-                "reference": "ce69b934b1dcaa6b284e33c6920058f308daddda"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/metrics/zipball/ce69b934b1dcaa6b284e33c6920058f308daddda",
-                "reference": "ce69b934b1dcaa6b284e33c6920058f308daddda",
-                "shasum": ""
-            },
-            "require": {
-                "api-clients/rx": "^2.2",
-                "php": "^7.4",
-                "react-inspector/metric": "^1.0",
-                "react/event-loop": "^1.1",
-                "reactivex/rxphp": "^2.0",
-                "thecodingmachine/safe": "^1.0",
-                "wyrihaximus/ticking-promise": "^1.6 || ^2.0"
-            },
-            "require-dev": {
-                "wyrihaximus/async-test-utilities": "^2.0"
-            },
-            "suggest": {
-                "react-inspector/bunny": "Measure what is going through fread/fwrite calls from bunny/bunny",
-                "react-inspector/event-loop": "Measure what is going through the event loop",
-                "react-inspector/memory-usage": "Message the memory usage of the current PHP process",
-                "react-inspector/stream": "Measure what is going through fread/fwrite calls from react/stream"
-            },
-            "type": "library",
-            "extra": {
-                "react-inspector": {
-                    "collectors": {
-                        "ReactInspector\\Collector": "src/Collector"
-                    },
-                    "metrics": [
-                        "inspector.metrics"
-                    ],
-                    "reset": {
-                        "ticks": [
-                            "inspector.metrics"
-                        ]
-                    }
-                },
-                "unused": [
-                    "php"
-                ]
-            },
-            "autoload": {
-                "psr-4": {
-                    "ReactInspector\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "http://wyrihaximus.net/"
-                }
-            ],
-            "description": "☄ Metrics stream",
-            "support": {
-                "issues": "https://github.com/reactphp-inspector/metrics/issues",
-                "source": "https://github.com/reactphp-inspector/metrics/tree/1.0.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/WyriHaximus",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-01-10T13:25:48+00:00"
-        },
-        {
-            "name": "react-inspector/printer",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp-inspector/printer.git",
-                "reference": "4b69d407f908f3fa1497bf5d417b47e0b90123b6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/printer/zipball/4b69d407f908f3fa1497bf5d417b47e0b90123b6",
-                "reference": "4b69d407f908f3fa1497bf5d417b47e0b90123b6",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4",
-                "react-inspector/metric": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ReactInspector\\Printer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "http://wyrihaximus.net/"
-                }
-            ],
-            "description": "🖨️ Metrics Printer",
-            "support": {
-                "issues": "https://github.com/reactphp-inspector/printer/issues",
-                "source": "https://github.com/reactphp-inspector/printer/tree/1.0.0"
-            },
-            "time": "2020-03-19T18:22:25+00:00"
-        },
-        {
-            "name": "react-inspector/prometheus-printer",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp-inspector/prometheus-printer.git",
-                "reference": "51045d4ba68f72f5f69d0f031736df821ecd25f0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/prometheus-printer/zipball/51045d4ba68f72f5f69d0f031736df821ecd25f0",
-                "reference": "51045d4ba68f72f5f69d0f031736df821ecd25f0",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4",
-                "react-inspector/metric": "^1.0",
-                "react-inspector/metrics": "^1.0",
-                "react-inspector/printer": "^1.0"
-            },
-            "require-dev": {
-                "wyrihaximus/async-test-utilities": "^2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ReactInspector\\Printer\\Prometheus\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "http://wyrihaximus.net/"
-                }
-            ],
-            "description": "📜 Metrics Printer in Prometheus format",
-            "support": {
-                "issues": "https://github.com/reactphp-inspector/prometheus-printer/issues",
-                "source": "https://github.com/reactphp-inspector/prometheus-printer/tree/1.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/WyriHaximus",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-03-20T22:41:00+00:00"
+            "time": "2024-09-24T05:24:58+00:00"
         },
         {
             "name": "react-inspector/stream",
-            "version": "1.0.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp-inspector/stream.git",
-                "reference": "f4b5b57d000c3dc2fd3ea7337cbdaf3afdde5c32"
+                "reference": "fce34d8327f3183f74b3e0ac476a51d6ef1d2f69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp-inspector/stream/zipball/f4b5b57d000c3dc2fd3ea7337cbdaf3afdde5c32",
-                "reference": "f4b5b57d000c3dc2fd3ea7337cbdaf3afdde5c32",
+                "url": "https://api.github.com/repos/reactphp-inspector/stream/zipball/fce34d8327f3183f74b3e0ac476a51d6ef1d2f69",
+                "reference": "fce34d8327f3183f74b3e0ac476a51d6ef1d2f69",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "^4.3",
-                "php": "^7.4",
-                "react-inspector/metric": "^1.0",
-                "react-inspector/metrics": "^1.0",
-                "react/event-loop": "^1.0",
-                "react/stream": "^1.0",
-                "reactivex/rxphp": "^2.0",
-                "roave/better-reflection": "^4.0",
-                "wyrihaximus/constants": "^1.5",
-                "wyrihaximus/iterator-or-array-to-array": "^1.1"
+                "nikic/php-parser": "^4.19",
+                "php": "^8.2",
+                "react-inspector/global-state": "^1",
+                "react/event-loop": "^1.5",
+                "react/stream": "^1.4",
+                "roave/better-reflection": "^6.26",
+                "wyrihaximus/metrics": "^2.1",
+                "wyrihaximus/metrics-lazy-registry": "^2"
             },
             "require-dev": {
-                "wyrihaximus/async-test-utilities": "^2.1"
+                "wyrihaximus/async-test-utilities": "^8"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "ReactInspector\\Stream\\": "src/"
-                },
                 "files": [
                     "src/bootstrap.php",
                     "src/include.php"
-                ]
+                ],
+                "psr-4": {
+                    "ReactInspector\\Stream\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1044,7 +657,7 @@
             "description": "🌊 React Stream throughput inspector",
             "support": {
                 "issues": "https://github.com/reactphp-inspector/stream/issues",
-                "source": "https://github.com/reactphp-inspector/stream/tree/1.0.0"
+                "source": "https://github.com/reactphp-inspector/stream/tree/2.0.0"
             },
             "funding": [
                 {
@@ -1052,7 +665,63 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-04-03T18:47:31+00:00"
+            "time": "2024-09-16T07:53:10+00:00"
+        },
+        {
+            "name": "react-parallel/object-proxy-attributes",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp-parallel/object-proxy-attributes.git",
+                "reference": "2ee1cebc5f2a4dfd75f372ff77d144c631388859"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp-parallel/object-proxy-attributes/zipball/2ee1cebc5f2a4dfd75f372ff77d144c631388859",
+                "reference": "2ee1cebc5f2a4dfd75f372ff77d144c631388859",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8 || ^7.4"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.11",
+                "wyrihaximus/test-utilities": "^2.9 || ^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "unused": [
+                    "php"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "ReactParallel\\ObjectProxy\\Attribute\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "ceesjank@gmail.com",
+                    "homepage": "http://wyrihaximus.net/"
+                }
+            ],
+            "description": "👨‍🚀🛰👩‍🚀 Attributes for react-parallel/object-proxy",
+            "support": {
+                "issues": "https://github.com/reactphp-parallel/object-proxy-attributes/issues",
+                "source": "https://github.com/reactphp-parallel/object-proxy-attributes/tree/1.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-11-11T08:41:45+00:00"
         },
         {
             "name": "react/cache",
@@ -1276,16 +945,16 @@
         },
         {
             "name": "react/http",
-            "version": "v1.9.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/http.git",
-                "reference": "bb3154dbaf2dfe3f0467f956a05f614a69d5f1d0"
+                "reference": "8111281ee57f22b7194f5dba225e609ba7ce4d20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/http/zipball/bb3154dbaf2dfe3f0467f956a05f614a69d5f1d0",
-                "reference": "bb3154dbaf2dfe3f0467f956a05f614a69d5f1d0",
+                "url": "https://api.github.com/repos/reactphp/http/zipball/8111281ee57f22b7194f5dba225e609ba7ce4d20",
+                "reference": "8111281ee57f22b7194f5dba225e609ba7ce4d20",
                 "shasum": ""
             },
             "require": {
@@ -1296,14 +965,13 @@
                 "react/event-loop": "^1.2",
                 "react/promise": "^3 || ^2.3 || ^1.2.1",
                 "react/socket": "^1.12",
-                "react/stream": "^1.2",
-                "ringcentral/psr7": "^1.2"
+                "react/stream": "^1.2"
             },
             "require-dev": {
                 "clue/http-proxy-react": "^1.8",
                 "clue/reactphp-ssh-proxy": "^1.4",
                 "clue/socks-react": "^1.4",
-                "phpunit/phpunit": "^9.5 || ^5.7 || ^4.8.35",
+                "phpunit/phpunit": "^9.6 || ^5.7 || ^4.8.36",
                 "react/async": "^4 || ^3 || ^2",
                 "react/promise-stream": "^1.4",
                 "react/promise-timer": "^1.9"
@@ -1356,7 +1024,7 @@
             ],
             "support": {
                 "issues": "https://github.com/reactphp/http/issues",
-                "source": "https://github.com/reactphp/http/tree/v1.9.0"
+                "source": "https://github.com/reactphp/http/tree/v1.10.0"
             },
             "funding": [
                 {
@@ -1364,27 +1032,28 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2023-04-26T10:29:24+00:00"
+            "time": "2024-03-27T17:20:46+00:00"
         },
         {
             "name": "react/promise",
-            "version": "v2.11.0",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/promise.git",
-                "reference": "1a8460931ea36dc5c76838fec5734d55c88c6831"
+                "reference": "8a164643313c71354582dc850b42b33fa12a4b63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/1a8460931ea36dc5c76838fec5734d55c88c6831",
-                "reference": "1a8460931ea36dc5c76838fec5734d55c88c6831",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/8a164643313c71354582dc850b42b33fa12a4b63",
+                "reference": "8a164643313c71354582dc850b42b33fa12a4b63",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=7.1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.6 || ^5.7 || ^4.8.36"
+                "phpstan/phpstan": "1.10.39 || 1.4.10",
+                "phpunit/phpunit": "^9.6 || ^7.5"
             },
             "type": "library",
             "autoload": {
@@ -1428,7 +1097,7 @@
             ],
             "support": {
                 "issues": "https://github.com/reactphp/promise/issues",
-                "source": "https://github.com/reactphp/promise/tree/v2.11.0"
+                "source": "https://github.com/reactphp/promise/tree/v3.2.0"
             },
             "funding": [
                 {
@@ -1436,7 +1105,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2023-11-16T16:16:50+00:00"
+            "time": "2024-05-24T10:39:05+00:00"
         },
         {
             "name": "react/socket",
@@ -1597,173 +1266,33 @@
             "time": "2024-06-11T12:45:25+00:00"
         },
         {
-            "name": "reactivex/rxphp",
-            "version": "2.0.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ReactiveX/RxPHP.git",
-                "reference": "3eedf2640b85dfaf4718529e3932756cd8c2addf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ReactiveX/RxPHP/zipball/3eedf2640b85dfaf4718529e3932756cd8c2addf",
-                "reference": "3eedf2640b85dfaf4718529e3932756cd8c2addf",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0.0",
-                "react/promise": "~2.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.5 || ^9",
-                "react/event-loop": "^1.0 || ^0.5 || ^0.4.2",
-                "satooshi/php-coveralls": "~1.0"
-            },
-            "suggest": {
-                "react/event-loop": "Used for scheduling async operations"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Rx\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander",
-                    "email": "iam.asm89@gmail.com"
-                },
-                {
-                    "name": "David Dan",
-                    "email": "davidwdan@gmail.com"
-                },
-                {
-                    "name": "Matt Bonneau",
-                    "email": "matt@bonneau.net"
-                }
-            ],
-            "description": "Reactive extensions for php.",
-            "homepage": "https://github.com/ReactiveX/RxPHP",
-            "keywords": [
-                "extensions",
-                "reactive",
-                "rx"
-            ],
-            "support": {
-                "issues": "https://github.com/ReactiveX/RxPHP/issues",
-                "source": "https://github.com/ReactiveX/RxPHP/tree/2.0.9"
-            },
-            "time": "2021-03-05T14:44:06+00:00"
-        },
-        {
-            "name": "ringcentral/psr7",
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ringcentral/psr7.git",
-                "reference": "360faaec4b563958b673fb52bbe94e37f14bc686"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ringcentral/psr7/zipball/360faaec4b563958b673fb52bbe94e37f14bc686",
-                "reference": "360faaec4b563958b673fb52bbe94e37f14bc686",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3",
-                "psr/http-message": "~1.0"
-            },
-            "provide": {
-                "psr/http-message-implementation": "1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/functions_include.php"
-                ],
-                "psr-4": {
-                    "RingCentral\\Psr7\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "PSR-7 message implementation",
-            "keywords": [
-                "http",
-                "message",
-                "stream",
-                "uri"
-            ],
-            "support": {
-                "source": "https://github.com/ringcentral/psr7/tree/master"
-            },
-            "time": "2018-05-29T20:21:04+00:00"
-        },
-        {
             "name": "roave/better-reflection",
-            "version": "4.9.0",
+            "version": "6.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/BetterReflection.git",
-                "reference": "6d1bd5746896996f165dc4ea47003167da965583"
+                "reference": "658309b70c5afd7b9cfaad20c18aff3943cce23a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/BetterReflection/zipball/6d1bd5746896996f165dc4ea47003167da965583",
-                "reference": "6d1bd5746896996f165dc4ea47003167da965583",
+                "url": "https://api.github.com/repos/Roave/BetterReflection/zipball/658309b70c5afd7b9cfaad20c18aff3943cce23a",
+                "reference": "658309b70c5afd7b9cfaad20c18aff3943cce23a",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "jetbrains/phpstorm-stubs": "2019.3",
-                "nikic/php-parser": "^4.5.0",
-                "php": ">=7.4.1,<7.5.0",
-                "phpdocumentor/reflection-docblock": "^5.1.0",
-                "phpdocumentor/type-resolver": "^1.3.0",
-                "roave/signature": "^1.0"
+                "jetbrains/phpstorm-stubs": "2023.3",
+                "nikic/php-parser": "^4.18.0",
+                "php": "~8.2.0 || ~8.3.2",
+                "roave/signature": "^1.8.0"
             },
-            "require-dev": {
-                "doctrine/coding-standard": "^8.0.0",
-                "infection/infection": "^0.16.4",
-                "phpstan/phpstan": "^0.12.25",
-                "phpunit/phpunit": "^9.2.5",
-                "vimeo/psalm": "3.12.1"
+            "conflict": {
+                "thecodingmachine/safe": "<1.1.3"
             },
             "suggest": {
                 "composer/composer": "Required to use the ComposerSourceLocator"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Roave\\BetterReflection\\": "src"
@@ -1798,29 +1327,32 @@
             "description": "Better Reflection - an improved code reflection API",
             "support": {
                 "issues": "https://github.com/Roave/BetterReflection/issues",
-                "source": "https://github.com/Roave/BetterReflection/tree/4.9.0"
+                "source": "https://github.com/Roave/BetterReflection/tree/6.26.0"
             },
-            "time": "2020-07-10T15:17:35+00:00"
+            "time": "2024-03-11T17:43:07+00:00"
         },
         {
             "name": "roave/signature",
-            "version": "1.0.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/Signature.git",
-                "reference": "bed4ecbdd7f312ab6bb39561ac191f520bcee386"
+                "reference": "f92ce20f82c9a1df3b50fc56fbdaeb82cf4c9c5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/Signature/zipball/bed4ecbdd7f312ab6bb39561ac191f520bcee386",
-                "reference": "bed4ecbdd7f312ab6bb39561ac191f520bcee386",
+                "url": "https://api.github.com/repos/Roave/Signature/zipball/f92ce20f82c9a1df3b50fc56fbdaeb82cf4c9c5b",
+                "reference": "f92ce20f82c9a1df3b50fc56fbdaeb82cf4c9c5b",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0|^7.1"
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.6"
+                "doctrine/coding-standard": "^12.0.0",
+                "infection/infection": "^0.26.19",
+                "phpunit/phpunit": "^9.6.7",
+                "vimeo/psalm": "^5.9.0"
             },
             "type": "library",
             "autoload": {
@@ -1835,31 +1367,31 @@
             "description": "Sign and verify stuff",
             "support": {
                 "issues": "https://github.com/Roave/Signature/issues",
-                "source": "https://github.com/Roave/Signature/tree/master"
+                "source": "https://github.com/Roave/Signature/tree/1.8.0"
             },
-            "time": "2017-02-17T13:53:21+00:00"
+            "time": "2023-11-25T00:11:29+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v2.4.0",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "5f38c8804a9e97d23e0c8d63341088cd8a22d627"
+                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/5f38c8804a9e97d23e0c8d63341088cd8a22d627",
-                "reference": "5f38c8804a9e97d23e0c8d63341088cd8a22d627",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
+                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=8.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.4-dev"
+                    "dev-main": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -1888,7 +1420,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v2.4.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -1904,45 +1436,45 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-23T23:28:01+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.23.0",
+            "version": "v1.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce"
+                "reference": "a3cc8b044a6ea513310cbd48ef7333b384945638"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/46cd95797e9df938fdd2b03693b5fca5e64b01ce",
-                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/a3cc8b044a6ea513310cbd48ef7333b384945638",
+                "reference": "a3cc8b044a6ea513310cbd48ef7333b384945638",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.2"
+            },
+            "provide": {
+                "ext-ctype": "*"
             },
             "suggest": {
                 "ext-ctype": "For best performance"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.23-dev"
-                },
                 "thanks": {
                     "name": "symfony/polyfill",
                     "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1967,7 +1499,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.23.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.31.0"
             },
             "funding": [
                 {
@@ -1983,45 +1515,45 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-19T12:13:01+00:00"
+            "time": "2024-09-09T11:45:10+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.23.1",
+            "version": "v1.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6"
+                "reference": "85181ba99b2345b0ef10ce42ecac37612d9fd341"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/9174a3d80210dca8daa7f31fec659150bbeabfc6",
-                "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/85181ba99b2345b0ef10ce42ecac37612d9fd341",
+                "reference": "85181ba99b2345b0ef10ce42ecac37612d9fd341",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.2"
+            },
+            "provide": {
+                "ext-mbstring": "*"
             },
             "suggest": {
                 "ext-mbstring": "For best performance"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.23-dev"
-                },
                 "thanks": {
                     "name": "symfony/polyfill",
                     "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2047,7 +1579,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.23.1"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.31.0"
             },
             "funding": [
                 {
@@ -2063,32 +1595,108 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-27T12:26:48+00:00"
+            "time": "2024-09-09T11:45:10+00:00"
         },
         {
-            "name": "symfony/yaml",
-            "version": "v5.3.3",
+            "name": "symfony/polyfill-php81",
+            "version": "v1.31.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "485c83a2fb5893e2ff21bf4bfc7fdf48b4967229"
+                "url": "https://github.com/symfony/polyfill-php81.git",
+                "reference": "4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/485c83a2fb5893e2ff21bf4bfc7fdf48b4967229",
-                "reference": "485c83a2fb5893e2ff21bf4bfc7fdf48b4967229",
+                "url": "https://api.github.com/repos/symfony/polyfill-php81/zipball/4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c",
+                "reference": "4a4cfc2d253c21a5ad0e53071df248ed48c6ce5c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php81\\": ""
+                },
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.1+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php81/tree/v1.31.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-09-09T11:45:10+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v5.4.44",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "7025b964f123bbf1896d7563db6ec7f1f63e918a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/7025b964f123bbf1896d7563db6ec7f1f63e918a",
+                "reference": "7025b964f123bbf1896d7563db6ec7f1f63e918a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
-                "symfony/deprecation-contracts": "^2.1",
-                "symfony/polyfill-ctype": "~1.8"
+                "symfony/deprecation-contracts": "^2.1|^3",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "symfony/console": "<4.4"
+                "symfony/console": "<5.3"
             },
             "require-dev": {
-                "symfony/console": "^4.4|^5.0"
+                "symfony/console": "^5.3|^6.0"
             },
             "suggest": {
                 "symfony/console": "For validating YAML files using the lint command"
@@ -2122,7 +1730,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v5.3.3"
+                "source": "https://github.com/symfony/yaml/tree/v5.4.44"
             },
             "funding": [
                 {
@@ -2138,50 +1746,50 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-24T08:13:00+00:00"
+            "time": "2024-09-16T14:36:56+00:00"
         },
         {
             "name": "thecodingmachine/safe",
-            "version": "v1.3.3",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thecodingmachine/safe.git",
-                "reference": "a8ab0876305a4cdaef31b2350fcb9811b5608dbc"
+                "reference": "3115ecd6b4391662b4931daac4eba6b07a2ac1f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thecodingmachine/safe/zipball/a8ab0876305a4cdaef31b2350fcb9811b5608dbc",
-                "reference": "a8ab0876305a4cdaef31b2350fcb9811b5608dbc",
+                "url": "https://api.github.com/repos/thecodingmachine/safe/zipball/3115ecd6b4391662b4931daac4eba6b07a2ac1f0",
+                "reference": "3115ecd6b4391662b4931daac4eba6b07a2ac1f0",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2"
+                "php": "^8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan": "^1.5",
+                "phpunit/phpunit": "^9.5",
                 "squizlabs/php_codesniffer": "^3.2",
-                "thecodingmachine/phpstan-strict-rules": "^0.12"
+                "thecodingmachine/phpstan-strict-rules": "^1.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.1-dev"
+                    "dev-master": "2.2.x-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Safe\\": [
-                        "lib/",
-                        "deprecated/",
-                        "generated/"
-                    ]
-                },
                 "files": [
                     "deprecated/apc.php",
+                    "deprecated/array.php",
+                    "deprecated/datetime.php",
                     "deprecated/libevent.php",
+                    "deprecated/misc.php",
+                    "deprecated/password.php",
                     "deprecated/mssql.php",
                     "deprecated/stats.php",
+                    "deprecated/strings.php",
                     "lib/special_cases.php",
+                    "deprecated/mysqli.php",
                     "generated/apache.php",
                     "generated/apcu.php",
                     "generated/array.php",
@@ -2202,6 +1810,7 @@
                     "generated/fpm.php",
                     "generated/ftp.php",
                     "generated/funchand.php",
+                    "generated/gettext.php",
                     "generated/gmp.php",
                     "generated/gnupg.php",
                     "generated/hash.php",
@@ -2211,7 +1820,6 @@
                     "generated/image.php",
                     "generated/imap.php",
                     "generated/info.php",
-                    "generated/ingres-ii.php",
                     "generated/inotify.php",
                     "generated/json.php",
                     "generated/ldap.php",
@@ -2220,20 +1828,14 @@
                     "generated/mailparse.php",
                     "generated/mbstring.php",
                     "generated/misc.php",
-                    "generated/msql.php",
                     "generated/mysql.php",
-                    "generated/mysqli.php",
-                    "generated/mysqlndMs.php",
-                    "generated/mysqlndQc.php",
                     "generated/network.php",
                     "generated/oci8.php",
                     "generated/opcache.php",
                     "generated/openssl.php",
                     "generated/outcontrol.php",
-                    "generated/password.php",
                     "generated/pcntl.php",
                     "generated/pcre.php",
-                    "generated/pdf.php",
                     "generated/pgsql.php",
                     "generated/posix.php",
                     "generated/ps.php",
@@ -2244,7 +1846,6 @@
                     "generated/sem.php",
                     "generated/session.php",
                     "generated/shmop.php",
-                    "generated/simplexml.php",
                     "generated/sockets.php",
                     "generated/sodium.php",
                     "generated/solr.php",
@@ -2266,6 +1867,13 @@
                     "generated/yaz.php",
                     "generated/zip.php",
                     "generated/zlib.php"
+                ],
+                "classmap": [
+                    "lib/DateTime.php",
+                    "lib/DateTimeImmutable.php",
+                    "lib/Exceptions/",
+                    "deprecated/Exceptions/",
+                    "generated/Exceptions/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2275,40 +1883,43 @@
             "description": "PHP core functions that throw exceptions instead of returning FALSE on error",
             "support": {
                 "issues": "https://github.com/thecodingmachine/safe/issues",
-                "source": "https://github.com/thecodingmachine/safe/tree/v1.3.3"
+                "source": "https://github.com/thecodingmachine/safe/tree/v2.5.0"
             },
-            "time": "2020-10-28T17:51:34+00:00"
+            "time": "2023-04-05T11:54:14+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v3.3.3",
+            "version": "v3.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a27fa056df8a6384316288ca8b0fa3a35fdeb569"
+                "reference": "126b2c97818dbff0cdf3fbfc881aedb3d40aae72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a27fa056df8a6384316288ca8b0fa3a35fdeb569",
-                "reference": "a27fa056df8a6384316288ca8b0fa3a35fdeb569",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/126b2c97818dbff0cdf3fbfc881aedb3d40aae72",
+                "reference": "126b2c97818dbff0cdf3fbfc881aedb3d40aae72",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5",
+                "php": ">=8.0.2",
+                "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "^1.8",
-                "symfony/polyfill-mbstring": "^1.3"
+                "symfony/polyfill-mbstring": "^1.3",
+                "symfony/polyfill-php81": "^1.29"
             },
             "require-dev": {
-                "psr/container": "^1.0",
-                "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
+                "psr/container": "^1.0|^2.0",
+                "symfony/phpunit-bridge": "^5.4.9|^6.4|^7.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3-dev"
-                }
-            },
             "autoload": {
+                "files": [
+                    "src/Resources/core.php",
+                    "src/Resources/debug.php",
+                    "src/Resources/escaper.php",
+                    "src/Resources/string_loader.php"
+                ],
                 "psr-4": {
                     "Twig\\": "src/"
                 }
@@ -2341,7 +1952,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.3.3"
+                "source": "https://github.com/twigphp/Twig/tree/v3.14.0"
             },
             "funding": [
                 {
@@ -2353,77 +1964,24 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-17T08:44:23+00:00"
-        },
-        {
-            "name": "webmozart/assert",
-            "version": "1.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webmozarts/assert.git",
-                "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
-                "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0 || ^8.0",
-                "symfony/polyfill-ctype": "^1.8"
-            },
-            "conflict": {
-                "phpstan/phpstan": "<0.12.20",
-                "vimeo/psalm": "<3.9.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.36 || ^7.5.13"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Webmozart\\Assert\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bernhard Schussek",
-                    "email": "bschussek@gmail.com"
-                }
-            ],
-            "description": "Assertions to validate method input/output with nice error messages.",
-            "keywords": [
-                "assert",
-                "check",
-                "validate"
-            ],
-            "support": {
-                "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/1.9.1"
-            },
-            "time": "2020-07-08T17:02:28+00:00"
+            "time": "2024-09-09T17:55:12+00:00"
         },
         {
             "name": "wyrihaximus/constants",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-constants.git",
-                "reference": "a2202b683261f8119f3772eb1e3469a2b5c4d9eb"
+                "reference": "32ceffdd881593c7fa24d8fcbf9deb58687484cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-constants/zipball/a2202b683261f8119f3772eb1e3469a2b5c4d9eb",
-                "reference": "a2202b683261f8119f3772eb1e3469a2b5c4d9eb",
+                "url": "https://api.github.com/repos/WyriHaximus/php-constants/zipball/32ceffdd881593c7fa24d8fcbf9deb58687484cb",
+                "reference": "32ceffdd881593c7fa24d8fcbf9deb58687484cb",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0 || ^5.3"
+                "php": "^8 || ^7 || ^5.3"
             },
             "type": "library",
             "autoload": {
@@ -2448,33 +2006,42 @@
             "description": "Collection of constants for PHP",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-constants/issues",
-                "source": "https://github.com/WyriHaximus/php-constants/tree/master"
+                "source": "https://github.com/WyriHaximus/php-constants/tree/1.6.0"
             },
-            "time": "2020-04-02T21:00:04+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-28T12:04:43+00:00"
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.8.5",
+            "version": "1.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "0bbdc814e372ed4805b014822258cd4824004a64"
+                "reference": "085c5027b19538df8a6d96e20bd25c31e9a9ab40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/0bbdc814e372ed4805b014822258cd4824004a64",
-                "reference": "0bbdc814e372ed4805b014822258cd4824004a64",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/085c5027b19538df8a6d96e20bd25c31e9a9ab40",
+                "reference": "085c5027b19538df8a6d96e20bd25c31e9a9ab40",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
+                "php": "^8 || ^7.4",
                 "wyrihaximus/simple-twig": "^2 || ^1"
             },
             "type": "library",
             "autoload": {
                 "files": [
                     "src/versions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "WyriHaximus\\FakePHPVersion\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2490,7 +2057,7 @@
             "description": "Ever wanted a fake non-existing version number of PHP, well this package is for you!",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-fake-php-version/issues",
-                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.8.5"
+                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.9.4"
             },
             "funding": [
                 {
@@ -2498,34 +2065,43 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-21T17:58:12+00:00"
+            "time": "2024-09-24T18:53:30+00:00"
         },
         {
-            "name": "wyrihaximus/iterator-or-array-to-array",
-            "version": "1.1.0",
+            "name": "wyrihaximus/metrics",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WyriHaximus/php-iterator-or-array-to-array.git",
-                "reference": "2d8ea61e3c7affaee7deec1a0b0bdc667a3e9cc4"
+                "url": "https://github.com/WyriHaximus/php-metrics.git",
+                "reference": "2edd4af12ddac00b29e676b4cfc3f8c310b1cb55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-iterator-or-array-to-array/zipball/2d8ea61e3c7affaee7deec1a0b0bdc667a3e9cc4",
-                "reference": "2d8ea61e3c7affaee7deec1a0b0bdc667a3e9cc4",
+                "url": "https://api.github.com/repos/WyriHaximus/php-metrics/zipball/2edd4af12ddac00b29e676b4cfc3f8c310b1cb55",
+                "reference": "2edd4af12ddac00b29e676b4cfc3f8c310b1cb55",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2"
+                "lcobucci/clock": "^2.0 || ^3.0",
+                "php": "^8.1",
+                "react-parallel/object-proxy-attributes": "^1",
+                "thecodingmachine/safe": "^2.0",
+                "wyrihaximus/constants": "^1.5"
             },
             "require-dev": {
-                "api-clients/cs-fixer-config": "^1.1",
-                "api-clients/test-utilities": "^5.2"
+                "phpbench/phpbench": "^1.2.3",
+                "wyrihaximus/test-utilities": "^5.1"
             },
             "type": "library",
-            "autoload": {
-                "files": [
-                    "src/functions_include.php"
+            "extra": {
+                "unused": [
+                    "thecodingmachine/safe"
                 ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "WyriHaximus\\Metrics\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2537,36 +2113,96 @@
                     "email": "ceesjank@gmail.com"
                 }
             ],
-            "description": "Like iterator_to_array but doesn't error when handed an array",
+            "description": "🕵️‍♀️ Prometheus modelled metric VO's and registry",
             "support": {
-                "issues": "https://github.com/WyriHaximus/php-iterator-or-array-to-array/issues",
-                "source": "https://github.com/WyriHaximus/php-iterator-or-array-to-array/tree/master"
+                "issues": "https://github.com/WyriHaximus/php-metrics/issues",
+                "source": "https://github.com/WyriHaximus/php-metrics/tree/2.1.0"
             },
-            "time": "2018-12-29T20:17:57+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-13T23:11:41+00:00"
         },
         {
-            "name": "wyrihaximus/react-http-middleware-with-headers",
+            "name": "wyrihaximus/metrics-lazy-registry",
             "version": "2.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WyriHaximus/reactphp-http-middleware-with-headers.git",
-                "reference": "53470a21d0c750ee366867c7f74ae48db820035c"
+                "url": "https://github.com/WyriHaximus/php-metrics-lazy-registry.git",
+                "reference": "635b6a5bf0d09a19d3f8c87a1a6c82adca92ad01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/reactphp-http-middleware-with-headers/zipball/53470a21d0c750ee366867c7f74ae48db820035c",
-                "reference": "53470a21d0c750ee366867c7f74ae48db820035c",
+                "url": "https://api.github.com/repos/WyriHaximus/php-metrics-lazy-registry/zipball/635b6a5bf0d09a19d3f8c87a1a6c82adca92ad01",
+                "reference": "635b6a5bf0d09a19d3f8c87a1a6c82adca92ad01",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4",
-                "psr/http-message": "^1",
-                "react/http": "^1",
-                "react/promise": "^2.8",
-                "wyrihaximus/constants": "^1.5"
+                "php": "^8.2",
+                "wyrihaximus/metrics": "^2.1"
             },
             "require-dev": {
-                "wyrihaximus/async-test-utilities": "^2.2"
+                "wyrihaximus/test-utilities": "^6.0.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WyriHaximus\\Metrics\\LazyRegistry\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "ceesjank@gmail.com"
+                }
+            ],
+            "description": "👻 Lazy registry for wyrihaximus/metrics",
+            "support": {
+                "issues": "https://github.com/WyriHaximus/php-metrics-lazy-registry/issues",
+                "source": "https://github.com/WyriHaximus/php-metrics-lazy-registry/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-09-14T21:16:04+00:00"
+        },
+        {
+            "name": "wyrihaximus/react-http-middleware-with-headers",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WyriHaximus/reactphp-http-middleware-with-headers.git",
+                "reference": "0fadb0e2f9e2512837328ee1790c82cbcb242219"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WyriHaximus/reactphp-http-middleware-with-headers/zipball/0fadb0e2f9e2512837328ee1790c82cbcb242219",
+                "reference": "0fadb0e2f9e2512837328ee1790c82cbcb242219",
+                "shasum": ""
+            },
+            "require": {
+                "ext-random": "^8.2",
+                "php": "^8.2",
+                "psr/http-message": "^1.1",
+                "react/promise": "^3",
+                "thecodingmachine/safe": "^2.5"
+            },
+            "require-dev": {
+                "react/http": "^1.10",
+                "wyrihaximus/async-test-utilities": "^8.0.5"
+            },
+            "suggest": {
+                "wyrihaximus-net/x-headers": "Set of Nerdy headers I use in all my services for shits and giggles"
             },
             "type": "library",
             "autoload": {
@@ -2587,7 +2223,7 @@
             "description": "react/http middleware to add headers to a response",
             "support": {
                 "issues": "https://github.com/WyriHaximus/reactphp-http-middleware-with-headers/issues",
-                "source": "https://github.com/WyriHaximus/reactphp-http-middleware-with-headers/tree/master"
+                "source": "https://github.com/WyriHaximus/reactphp-http-middleware-with-headers/tree/3.0.0"
             },
             "funding": [
                 {
@@ -2595,7 +2231,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-07-11T22:55:48+00:00"
+            "time": "2024-09-04T13:06:16+00:00"
         },
         {
             "name": "wyrihaximus/simple-twig",
@@ -2620,12 +2256,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "WyriHaximus\\Twig\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "WyriHaximus\\Twig\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2649,61 +2285,6 @@
                 }
             ],
             "time": "2021-09-08T22:05:38+00:00"
-        },
-        {
-            "name": "wyrihaximus/ticking-promise",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/WyriHaximus/TickingPromise.git",
-                "reference": "d3903d4bebe8e3c5b11464c0bb81802cdeeb3751"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/TickingPromise/zipball/d3903d4bebe8e3c5b11464c0bb81802cdeeb3751",
-                "reference": "d3903d4bebe8e3c5b11464c0bb81802cdeeb3751",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8 || ^7.4",
-                "react/event-loop": "^1.0",
-                "react/promise": "^2.8"
-            },
-            "require-dev": {
-                "wyrihaximus/async-test-utilities": "^3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "WyriHaximus\\React\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "http://wyrihaximus.net/"
-                }
-            ],
-            "description": "Wrapping ticks into a promise",
-            "support": {
-                "issues": "https://github.com/WyriHaximus/TickingPromise/issues",
-                "source": "https://github.com/WyriHaximus/TickingPromise/tree/2.1.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/WyriHaximus",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-11-25T12:43:21+00:00"
         }
     ],
     "packages-dev": [],
@@ -2713,8 +2294,11 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4"
+        "php": "^8.3"
     },
     "platform-dev": [],
+    "platform-overrides": {
+        "php": "8.3.13"
+    },
     "plugin-api-version": "2.6.0"
 }

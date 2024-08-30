@@ -1,27 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 use Psr\Http\Message\ResponseInterface;
-use React\EventLoop\Factory;
 use React\EventLoop\Loop;
-use ReactInspector\Collector\Merger\CollectorMergerCollector;
-use ReactInspector\EventLoop\LoopCollector;
-use ReactInspector\EventLoop\LoopDecorator;
-use ReactInspector\Http\Middleware\Printer\PrinterMiddleware;
+use React\Http\Message\Uri;
+use ReactInspector\GlobalState;
+use ReactInspector\HttpMiddleware\Labels;
 use ReactInspector\HttpMiddleware\MiddlewareCollector;
-use ReactInspector\MemoryUsage\MemoryUsageCollector;
-use ReactInspector\Metrics;
-use ReactInspector\Printer\Prometheus\PrometheusPrinter;
-use ReactInspector\Stream\IOCollector;
-use ReactInspector\Tag;
-use ReactInspector\Tags;
-use RingCentral\Psr7\Uri;
+use ReactInspector\MemoryUsage\MemoryUsage;
 use Symfony\Component\Yaml\Yaml;
 use Psr\Http\Message\ServerRequestInterface;
 use React\Http\Message\Response;
-use React\Http\Server as HttpServer;
+use React\Http\HttpServer;
+use WyriHaximus\FakePHPVersion\Versions;
+use WyriHaximus\Metrics\Factory;
+use WyriHaximus\Metrics\Label;
+use WyriHaximus\Metrics\Printer\Prometheus;
 use WyriHaximus\React\Http\Middleware\Header;
 use WyriHaximus\React\Http\Middleware\WithHeadersMiddleware;
-use const WyriHaximus\FakePHPVersion\CURRENT;
 
 require 'vendor/autoload.php';
 
@@ -32,45 +29,36 @@ if ($yaml['buildin']['wwwToNonWww'] === true && $yaml['buildin']['nonWwwToWww'] 
     exit(1);
 }
 
-Loop::set(new LoopDecorator(Loop::get()));
-
 $metrics = [];
 $middleware = [];
 $metricsMiddleware = [];
 
 $extraHeaders = new WithHeadersMiddleware(
-    new Header('Server', 'wyrihaximusnet/redirect (https://hub.docker.com/r/wyrihaximusnet/redirect)'),
-    new Header('X-Powered-By', 'PHP/' . CURRENT),
+    new Header('Server', 'wyrihaximusnet/redirect (https://github.com/wyrihaximusnet/docker-redirect)'),
+    new Header('X-Powered-By', 'PHP/' . Versions::CURRENT),
 );
+
+$registry = Factory::create();
+GlobalState::register($registry);
+$memoryCollector = new MemoryUsage();
+$memoryCollector->register($registry);
 
 $middleware[] = $extraHeaders;
 $metricsMiddleware[] = $extraHeaders;
-$middlewareCollectorRedirects = new MiddlewareCollector('redirects');
-$middlewareCollectorMetrics = new MiddlewareCollector('metrics');
-$middleware[] = $middlewareCollectorRedirects;
-$metricsMiddleware[] = $middlewareCollectorMetrics;
+$middleware[] = new MiddlewareCollector(\ReactInspector\HttpMiddleware\Metrics::create($registry, new Label('vhost', 'redirects')));
+$metricsMiddleware[] = new MiddlewareCollector(\ReactInspector\HttpMiddleware\Metrics::create($registry, new Label('vhost', 'metrics')));
 
 $middleware[] = static function (ServerRequestInterface $request, callable $next) use (&$metrics): ResponseInterface {
-    /** @var Tags $tags */
-    $tags = $request->getAttribute(MiddlewareCollector::TAGS_ATTRIBUTE);
-    $tags->add(new Tag('fromHost', $request->getUri()->getHost()));
+    /** @var Labels $labels */
+    $labels = $request->getAttribute(MiddlewareCollector::LABELS_ATTRIBUTE);
+    $labels->add(new Label('fromHost', $request->getUri()->getHost()));
     /** @var ResponseInterface $response */
     $response = $next($request);
-    $tags->add(new Tag('toHost', parse_url($response->getHeaderLine('Location'))['host']));
+    $labels->add(new Label('toHost', parse_url($response->getHeaderLine('Location'))['host']));
     return $response;
 };
 
-$metricsMiddleware[] = new PrinterMiddleware(new PrometheusPrinter(), new Metrics(
-    Loop::get(),
-    3,
-    new LoopCollector(Loop::get()),
-    new MemoryUsageCollector(),
-    new IOCollector(),
-    new CollectorMergerCollector(
-        $middlewareCollectorRedirects,
-        $middlewareCollectorMetrics
-    )
-));
+$metricsMiddleware[] = static fn (): ResponseInterface => new Response(200, ['Content-Type' => 'text/plain'], $registry->print(new Prometheus()));;
 
 if (isset($yaml['hosts']) && is_array($yaml['hosts']) && count($yaml['hosts']) > 0) {
     $middleware[] = static function (ServerRequestInterface $request, callable $next) use ($yaml): ResponseInterface {
@@ -175,7 +163,7 @@ $server->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
 
-$socket = new React\Socket\Server('0.0.0.0:7132', null, ['backlog' => 511]);
+$socket = new React\Socket\SocketServer('0.0.0.0:7132', ['backlog' => 511]);
 $socket->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
@@ -186,20 +174,21 @@ $metricsServer->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
 
-$metricsSocket = new React\Socket\Server('0.0.0.0:7133', null, ['backlog' => 511]);
+$metricsSocket = new React\Socket\SocketServer('0.0.0.0:7133', ['backlog' => 511]);
 $metricsSocket->on('error', static function (Throwable $throwable): void {
     echo $throwable, PHP_EOL;
 });
 $metricsServer->listen($metricsSocket);
 
-$signalHandler = function () use (&$signalHandler, $socket, $metricsSocket) {
+$signalHandler = function () use (&$signalHandler, $socket, $metricsSocket, $memoryCollector, $registry) {
     echo 'Caught signal', PHP_EOL;
     Loop::removeSignal(SIGINT, $signalHandler);
     Loop::removeSignal(SIGTERM, $signalHandler);
     $socket->close();
     $metricsSocket->close();
+    $memoryCollector->unregister($registry);
     echo 'Closed and stopped everything', PHP_EOL;
-    Loop::stop();
+    die();
 };
 
 Loop::addSignal(SIGINT, $signalHandler);
