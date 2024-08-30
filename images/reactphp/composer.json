@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
         "react/http": "^1.4",
         "symfony/yaml": "^5.0",
         "wyrihaximus/fake-php-version": "^1.3",
