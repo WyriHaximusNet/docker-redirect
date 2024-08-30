@@ -13,7 +13,7 @@ jobs:
     outputs:
       registry: ${{ steps.registry-matrix.outputs.registry }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - id: registry-matrix
         name: Extract registries from registry secret mapping
         run: |
@@ -24,7 +24,7 @@ jobs:
     outputs:
       images: ${{ steps.generate-image-strategy.outputs.images }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - id: generate-image-strategy
         name: Generate Jobs
         run: |
@@ -37,7 +37,7 @@ jobs:
     outputs:
       rules: ${{ steps.generate-rule-strategy.outputs.rules }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - id: generate-rule-strategy
         name: Generate Jobs
         run: |
@@ -54,7 +54,7 @@ jobs:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         if: matrix.image != 'random'
       - name: Lint Dockerfile
         if: matrix.image != 'random'
@@ -73,7 +73,7 @@ jobs:
       - lint-dockerfile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - run: cp -R $(echo -e "./images/$(ls ./images/ | shuf -n 1)") ./images/random
         if: matrix.image == 'random'
       - run: docker image build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` -t "${DOCKER_IMAGE}:${{ matrix.image }}" --no-cache --build-arg VERSION=$TAG_VERSION ./images/${{ matrix.image }}/
@@ -94,7 +94,7 @@ jobs:
       - build-docker-image
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@master
         with:
           name: docker-image-${{ matrix.image }}
@@ -115,7 +115,7 @@ jobs:
         rule: ${{ fromJson(needs.generate-rule-strategy.outputs.rules) }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@master
         with:
           name: docker-image-${{ matrix.image }}
