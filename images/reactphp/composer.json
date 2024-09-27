@@ -1,19 +1,18 @@
 {
     "require": {
-        "php": "^7.4",
+        "php": "^8.3",
         "react/http": "^1.4",
         "symfony/yaml": "^5.0",
-        "wyrihaximus/fake-php-version": "^1.3",
-        "wyrihaximus/react-http-middleware-with-headers": "^2.0",
-        "react-inspector/http-middleware-printer": "^1.0",
-        "react-inspector/prometheus-printer": "^1.0",
-        "react-inspector/http-middleware": "^1.0",
-        "react-inspector/event-loop": "^1.0",
-        "react-inspector/stream": "^1.0",
-        "react-inspector/memory-usage": "^1.0",
-        "react-inspector/metric": "^1.0",
-        "react-inspector/metrics": "^1.0",
-        "react-inspector/printer": "^1.0",
-        "react-inspector/collector-merger": "^1.0"
+        "wyrihaximus/fake-php-version": "^1.9.3",
+        "wyrihaximus/react-http-middleware-with-headers": "^3.0",
+        "react-inspector/http-middleware": "^3.1",
+        "react-inspector/event-loop": "^2.0",
+        "react-inspector/stream": "^2.0",
+        "react-inspector/memory-usage": "^2.0"
+    },
+    "config": {
+        "platform": {
+            "php": "8.3.13"
+        }
     }
 }
