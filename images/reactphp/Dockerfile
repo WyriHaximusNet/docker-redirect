@@ -18,7 +18,7 @@ COPY ./ /opt/app/
 COPY --from=install-dependencies /opt/app/vendor/ /opt/app/vendor/
 
 USER root
-RUN chown app:app /opt/app/ -Rfv
+RUN chown app:app /opt/app/ -Rf
 USER app
 
 ENTRYPOINT ["php", "/opt/app/app.php"]
