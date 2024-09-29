@@ -104,8 +104,6 @@ jobs:
           images: ${{ env.REGISTRY_IMAGE }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
       - uses: actions/checkout@v4
       - run: cp -R $(echo -e "./images/$(ls ./images/ | shuf -n 1)") ./images/random
         if: matrix.image == 'random'
