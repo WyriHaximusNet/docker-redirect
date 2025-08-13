@@ -15,7 +15,7 @@ jobs:
     outputs:
       arch: ${{ steps.supported-arch-matrix.outputs.arch }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - id: supported-arch-matrix
         name: Generate Arch
         run: |
@@ -29,7 +29,7 @@ jobs:
     outputs:
       registry: ${{ steps.registry-matrix.outputs.registry }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - id: registry-matrix
         name: Extract registries from registry secret mapping
         run: |
@@ -40,7 +40,7 @@ jobs:
     outputs:
       images: ${{ steps.generate-image-strategy.outputs.images }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - id: generate-image-strategy
         name: Generate Jobs
         run: |
@@ -55,7 +55,7 @@ jobs:
     outputs:
       rules: ${{ steps.generate-rule-strategy.outputs.rules }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - id: generate-rule-strategy
         name: Generate Jobs
         run: |
@@ -72,7 +72,7 @@ jobs:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
         if: matrix.image != 'random'
       - name: Lint Dockerfile
         if: matrix.image != 'random'
@@ -99,18 +99,18 @@ jobs:
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@c1e51972afc2121e065aed6d45c65596fe445f3f # v5
         with:
           images: ${{ env.REGISTRY_IMAGE }}
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - uses: actions/checkout@v4
+        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - run: cp -R $(echo -e "./images/$(ls ./images/ | shuf -n 1)") ./images/random
         if: matrix.image == 'random'
       - run: mkdir ./docker-image
       - run: docker image build --platform=${{ matrix.platform }} --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` -t "${DOCKER_IMAGE}:${{ matrix.image }}-${{ env.PLATFORM_PAIR }}" --no-cache --build-arg VERSION=$TAG_VERSION ./images/${{ matrix.image }}/
       - run: docker save "${DOCKER_IMAGE}:${{ matrix.image }}-${{ env.PLATFORM_PAIR }}" -o ./docker-image/docker_image-${{ env.PLATFORM_PAIR }}.tar
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: docker-image-${{ matrix.image }}-${{ env.PLATFORM_PAIR }}
           path: ./docker-image
@@ -131,8 +131,8 @@ jobs:
         run: |
           platform=${{ matrix.platform }}
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: docker-image-${{ matrix.image }}-${{ env.PLATFORM_PAIR }}
           path: /tmp/docker-image
@@ -159,9 +159,9 @@ jobs:
           platform=${{ matrix.platform }}
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: docker-image-${{ matrix.image }}-${{ env.PLATFORM_PAIR }}
           path: /tmp/docker-image
@@ -231,12 +231,12 @@ jobs:
           - 5000:5000
     steps:
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3
         with:
           driver-opts: network=host
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           pattern: docker-image-${{ matrix.image }}-*
           path: /tmp/docker-image
