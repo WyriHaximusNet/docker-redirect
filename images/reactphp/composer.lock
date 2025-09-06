@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df4d412cf426f3f4028ebf3d1c992d84",
+    "content-hash": "c75124013fca4d6b6659fc7d3d2ac64f",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -1390,12 +1390,12 @@
             },
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "3.5-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -1464,8 +1464,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -1543,8 +1543,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -1617,8 +1617,8 @@
             "type": "library",
             "extra": {
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -2014,16 +2014,16 @@
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.9.4",
+            "version": "1.9.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "085c5027b19538df8a6d96e20bd25c31e9a9ab40"
+                "reference": "dc040356844d9538852c0ac9b349bf60ac2c7871"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/085c5027b19538df8a6d96e20bd25c31e9a9ab40",
-                "reference": "085c5027b19538df8a6d96e20bd25c31e9a9ab40",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/dc040356844d9538852c0ac9b349bf60ac2c7871",
+                "reference": "dc040356844d9538852c0ac9b349bf60ac2c7871",
                 "shasum": ""
             },
             "require": {
@@ -2053,7 +2053,7 @@
             "description": "Ever wanted a fake non-existing version number of PHP, well this package is for you!",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-fake-php-version/issues",
-                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.9.4"
+                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.9.21"
             },
             "funding": [
                 {
@@ -2061,7 +2061,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-24T18:53:30+00:00"
+            "time": "2025-09-06T20:18:29+00:00"
         },
         {
             "name": "wyrihaximus/metrics",
@@ -2286,13 +2286,13 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.3"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.3.13"
     },
