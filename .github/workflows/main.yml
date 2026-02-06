@@ -15,7 +15,7 @@ jobs:
     outputs:
       arch: ${{ steps.supported-arch-matrix.outputs.arch }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - id: supported-arch-matrix
         name: Generate Arch
         run: |
@@ -29,7 +29,7 @@ jobs:
     outputs:
       registry: ${{ steps.registry-matrix.outputs.registry }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - id: registry-matrix
         name: Extract registries from registry secret mapping
         run: |
@@ -40,7 +40,7 @@ jobs:
     outputs:
       images: ${{ steps.generate-image-strategy.outputs.images }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - id: generate-image-strategy
         name: Generate Jobs
         run: |
@@ -55,7 +55,7 @@ jobs:
     outputs:
       rules: ${{ steps.generate-rule-strategy.outputs.rules }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - id: generate-rule-strategy
         name: Generate Jobs
         run: |
@@ -72,7 +72,7 @@ jobs:
         image: ${{ fromJson(needs.generate-image-strategy.outputs.images) }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         if: matrix.image != 'random'
       - name: Lint Dockerfile
         if: matrix.image != 'random'
@@ -104,7 +104,7 @@ jobs:
           images: ${{ env.REGISTRY_IMAGE }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - run: cp -R $(echo -e "./images/$(ls ./images/ | shuf -n 1)") ./images/random
         if: matrix.image == 'random'
       - run: mkdir ./docker-image
@@ -131,7 +131,7 @@ jobs:
         run: |
           platform=${{ matrix.platform }}
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - uses: actions/download-artifact@v4
         with:
           name: docker-image-${{ matrix.image }}-${{ env.PLATFORM_PAIR }}
@@ -160,7 +160,7 @@ jobs:
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - uses: actions/download-artifact@v4
         with:
           name: docker-image-${{ matrix.image }}-${{ env.PLATFORM_PAIR }}
