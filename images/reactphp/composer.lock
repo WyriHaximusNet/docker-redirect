@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "abf78cf5b57da082ab5ed46ef6939ec2",
+    "content-hash": "8d0f00e43f163e39e7ec01c0439d14e7",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -1809,16 +1809,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.22.2",
+            "version": "v3.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "946ddeafa3c9f4ce279d1f34051af041db0e16f2"
+                "reference": "8c737079b726af72ff8ef3c595be9f6a810ea1ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/946ddeafa3c9f4ce279d1f34051af041db0e16f2",
-                "reference": "946ddeafa3c9f4ce279d1f34051af041db0e16f2",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8c737079b726af72ff8ef3c595be9f6a810ea1ef",
+                "reference": "8c737079b726af72ff8ef3c595be9f6a810ea1ef",
                 "shasum": ""
             },
             "require": {
@@ -1828,7 +1828,8 @@
                 "symfony/polyfill-mbstring": "^1.3"
             },
             "require-dev": {
-                "phpstan/phpstan": "^2.0",
+                "php-cs-fixer/shim": "^3.0@stable",
+                "phpstan/phpstan": "^2.0@stable",
                 "psr/container": "^1.0|^2.0",
                 "symfony/phpunit-bridge": "^5.4.9|^6.4|^7.0"
             },
@@ -1872,7 +1873,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.22.2"
+                "source": "https://github.com/twigphp/Twig/tree/v3.30.0"
             },
             "funding": [
                 {
@@ -1884,7 +1885,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-12-14T11:28:47+00:00"
+            "time": "2026-09-25T13:20:01+00:00"
         },
         {
             "name": "wyrihaximus/constants",
@@ -1938,16 +1939,16 @@
         },
         {
             "name": "wyrihaximus/fake-php-version",
-            "version": "1.9.26",
+            "version": "1.9.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-fake-php-version.git",
-                "reference": "dc34cf73a37b38a2bf2a2f0b58b6d5f15562b0d7"
+                "reference": "d3c00500ac4b4cdc07a656393ac3457c8f4a3d00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/dc34cf73a37b38a2bf2a2f0b58b6d5f15562b0d7",
-                "reference": "dc34cf73a37b38a2bf2a2f0b58b6d5f15562b0d7",
+                "url": "https://api.github.com/repos/WyriHaximus/php-fake-php-version/zipball/d3c00500ac4b4cdc07a656393ac3457c8f4a3d00",
+                "reference": "d3c00500ac4b4cdc07a656393ac3457c8f4a3d00",
                 "shasum": ""
             },
             "require": {
@@ -1977,7 +1978,7 @@
             "description": "Ever wanted a fake non-existing version number of PHP, well this package is for you!",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-fake-php-version/issues",
-                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.9.26"
+                "source": "https://github.com/WyriHaximus/php-fake-php-version/tree/1.9.35"
             },
             "funding": [
                 {
@@ -1985,7 +1986,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-13T21:54:03+00:00"
+            "time": "2026-09-22T13:53:44+00:00"
         },
         {
             "name": "wyrihaximus/metrics",
